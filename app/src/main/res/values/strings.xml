@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Repertorio DEI App</string>
+
+    <string name="edit_listName">Asigna un nombre de lista</string>
+    <string name="search_Song">Busca la cancion por artista o titulo</string>
+
+    <!--    Buscar canciones por Tiempos / bySeasons -->
+    <string name="searchSongsbySeason_title">ELIGE UN TIEMPO</string>
+    <string name="button_OrdinaryTime">Tiempo Ordinario</string>
+    <string name="button_LentTime">Cuaresma</string>
+    <string name="button_EasterTime">Pascua de Resurreccion</string>
+    <string name="button_PentecostTime">Pentecostes</string>
+    <string name="button_AdventTime">Adviento</string>
+    <string name="button_ChristmasTime">Navidad</string>
+
+    <!--    Buscar canciones por Partes / byParts -->
+    <string name="searchSongsbyParts_title">ELIGE UN MOMENTO DE LA MISA</string>
+    <string name="button_EntrancePart">Entrada</string>
+    <string name="button_MercyPart">Piedad</string>
+    <string name="button_GloryPart">Gloria</string>
+    <string name="button_SalmPart">Salmo</string>
+    <string name="button_AlelluiaPart">Proclamacion</string>
+    <string name="button_OffertoryPart">Ofertorio</string>
+    <string name="button_PeacePart">Paz</string>
+    <string name="button_LambGodPart">Cordero</string>
+    <string name="button_CommunionPart">Comunion</string>
+    <string name="button_PostCommunionPart">PostComunion</string>
+    <string name="button_ExitPart">Despedida</string>
+
+    <!--    Main activity strings -->
+    <string name="main_title">ELIGE UNA OPCION</string>
+    <string name="button_searchSongs">Buscar Canciones</string>
+    <string name="button_searchSongsbyParts">Ver Catalogo por Partes</string>
+    <string name="button_searchSongsbySeasons">Ver Catalogo por Tiempos</string>
+    <string name="button_goList">Ver mi lista</string>
+</resources>

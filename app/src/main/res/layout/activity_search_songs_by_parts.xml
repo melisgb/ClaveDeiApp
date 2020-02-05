@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchSongsByPartsActivity">
+
+    <TextView
+        android:id="@+id/searchSongsbyPartsTitleTxtView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:text="@string/searchSongsbyParts_title"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/p1_Entrada_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/round_shape_btn"
+        android:text="@string/button_EntrancePart"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/p2_Piedad_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchSongsbyPartsTitleTxtView" />
+
+    <Button
+        android:id="@+id/p2_Piedad_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:background="@drawable/round_shape_btn"
+        android:text="@string/button_MercyPart"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/p3_Gloria_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/p1_Entrada_btn" />
+
+    <Button
+        android:id="@+id/p3_Gloria_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:background="@drawable/round_shape_btn"
+        android:text="@string/button_GloryPart"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/p4_Salmos_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/p2_Piedad_btn" />
+
+    <Button
+        android:id="@+id/p4_Salmos_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:background="@drawable/round_shape_btn"
+        android:text="@string/button_SalmPart"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/p5_Proclamacion_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/p3_Gloria_btn" />
+
+    <Button
+        android:id="@+id/p5_Proclamacion_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/round_shape_btn"
+        android:text="@string/button_AlelluiaPart"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/p6_Ofertorio_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/p4_Salmos_btn" />
+
+    <Button
+        android:id="@+id/p6_Ofertorio_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:background="@drawable/round_shape_btn"
+        android:text="@string/button_OffertoryPart"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/p7_Paz_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/p5_Proclamacion_btn" />
+
+    <Button
+        android:id="@+id/p7_Paz_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:background="@drawable/round_shape_btn"
+        android:text="@string/button_PeacePart"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/p8_Cordero_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/p6_Ofertorio_btn" />
+
+    <Button
+        android:id="@+id/p8_Cordero_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:background="@drawable/round_shape_btn"
+        android:text="@string/button_LambGodPart"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/p9_Comunion_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/p7_Paz_btn" />
+
+    <Button
+        android:id="@+id/p9_Comunion_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:background="@drawable/round_shape_btn"
+        android:text="@string/button_CommunionPart"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/p10_Despedidad_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/p8_Cordero_btn" />
+
+    <Button
+        android:id="@+id/p10_Despedidad_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/round_shape_btn"
+        android:text="@string/button_ExitPart"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/p9_Comunion_btn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
