@@ -42,6 +42,19 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
+        android:id="@+id/ingresarCancionMBtn"
+        style="@style/MainButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/button_createSong"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verMiListaMBtn" />
+
+    <Button
         android:id="@+id/verCatalogoPartesMBtn"
         style="@style/MainButtons"
         android:layout_width="wrap_content"
@@ -79,5 +92,13 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/verCatalogoTiemposMBtn" />
+
+    <Button
+        android:id="@+id/verCancionBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ir a Canciones"
+        tools:layout_editor_absoluteX="248dp"
+        tools:layout_editor_absoluteY="508dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

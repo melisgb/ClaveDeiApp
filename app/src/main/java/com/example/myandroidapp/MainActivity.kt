@@ -53,6 +53,18 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val createSongButton = findViewById<Button>(R.id.ingresarCancionMBtn)
+        createSongButton.setOnClickListener {
+            val intent = Intent(this, CreateSongActivity::class.java)
+            startActivity(intent)
+        }
+
+        val readSongButton = findViewById<Button>(R.id.verCancionBtn)
+        readSongButton.setOnClickListener {
+            val intent = Intent(this, ReadSongActivity::class.java)
+            startActivity(intent)
+        }
+
         var databaseHelper = DatabaseHelper(this)
 
 

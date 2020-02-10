@@ -32,5 +32,6 @@
     <string name="button_searchSongs">Buscar Canciones</string>
     <string name="button_searchSongsbyParts">Ver Catalogo por Partes</string>
     <string name="button_searchSongsbySeasons">Ver Catalogo por Tiempos</string>
+    <string name="button_createSong">Nueva Cancion</string>
     <string name="button_goList">Ver mi lista</string>
 </resources>
