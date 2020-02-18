@@ -6,14 +6,17 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.myandroidapp.Model.Song
 
-class DatabaseHelper (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION){
+class DatabaseHelper(context: Context) :
+    SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
         var DATABASE_NAME = "songs_database"
         private val DATABASE_VERSION = 1
 
-        private val CREATE_TABLE_SONG = ("CREATE TABLE SONG (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, artist TEXT, lyrics TEXT, tags TEXT);")
+        private val CREATE_TABLE_SONG =
+            ("CREATE TABLE SONG (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, artist TEXT, lyrics TEXT, tags TEXT);")
 
-        private val CREATE_TABLE_LIST = ("CREATE TABLE LIST (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, song_id INTEGER);")
+        private val CREATE_TABLE_LIST =
+            ("CREATE TABLE LIST (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, song_id INTEGER);")
 
     }
 
@@ -31,15 +34,13 @@ class DatabaseHelper (context: Context): SQLiteOpenHelper(context, DATABASE_NAME
 
     //CRUD
 
-    fun getSongs(): List<Song>
-    {
+    fun getSongs(): List<Song> {
         val listSongs = ArrayList<Song>()
         val selectQuery = "SELECT * FROM SONG"
         val db = this.writableDatabase
         val cursor = db.rawQuery(selectQuery, null)
-        if(cursor.moveToFirst())
-        {
-            do{
+        if (cursor.moveToFirst()) {
+            do {
                 val song = Song()
                 song.id = cursor.getInt(cursor.getColumnIndex("id"))
                 song.title = cursor.getString(cursor.getColumnIndex("title"))
@@ -48,21 +49,19 @@ class DatabaseHelper (context: Context): SQLiteOpenHelper(context, DATABASE_NAME
                 song.tags = cursor.getString(cursor.getColumnIndex("tags"))
 
                 listSongs.add(song)
-            }
-            while(cursor.moveToNext())
+            } while (cursor.moveToNext())
         }
         db.close()
         return listSongs
     }
 
-    fun getSong(id: Long): Song?
-    {
-        val selectQuery = "SELECT * FROM SONG"
+    fun getSong(id: Long): Song? {
         val db = this.writableDatabase
-        val cursor = db.query(true, "SONG", null, "id = ?", arrayOf(id.toString()), null, null, null, null)
+        val cursor =
+            db.query(true, "SONG", null, "id = ?", arrayOf(id.toString()), null, null, null, null)
 
-        var song : Song? = null
-        if(cursor.moveToFirst()) {
+        var song: Song? = null
+        if (cursor.moveToFirst()) {
             song = Song()
             song.id = cursor.getInt(cursor.getColumnIndex("id"))
             song.title = cursor.getString(cursor.getColumnIndex("title"))
@@ -77,8 +76,7 @@ class DatabaseHelper (context: Context): SQLiteOpenHelper(context, DATABASE_NAME
     }
 
 
-    fun addSong(song:Song)
-    {
+    fun addSong(song: Song) {
         val db = this.writableDatabase
         val values = ContentValues()
         values.put("title", song.title)
@@ -90,8 +88,7 @@ class DatabaseHelper (context: Context): SQLiteOpenHelper(context, DATABASE_NAME
         db.close()
     }
 
-    fun updateSong(song:Song):Int
-    {
+    fun updateSong(song: Song): Int {
         val db = this.writableDatabase
         val values = ContentValues()
         values.put("id", song.id)
@@ -103,15 +100,44 @@ class DatabaseHelper (context: Context): SQLiteOpenHelper(context, DATABASE_NAME
         return db.update("SONG", values, "id=?", arrayOf(song.id.toString()))
     }
 
-    fun deleteSong(song:Song)
-    {
+    fun deleteSong(song: Song) {
         val db = this.writableDatabase
 
-        db.delete("SONG","id=?", arrayOf(song.id.toString()))
+        db.delete("SONG", "id=?", arrayOf(song.id.toString()))
         db.close()
     }
 
+    fun searchSongs(keyword: String): List<Song> {
+        val listSongs = ArrayList<Song>()
+        val db = this.writableDatabase
 
+        val cursor = db.query(
+            true,
+            "SONG",
+            null,
+            "title LIKE ? or artist LIKE ? or lyrics LIKE ? or tags LIKE ?",
+            arrayOf("%$keyword%", "%$keyword%", "%$keyword%", "%$keyword%"),
+            null,
+            null,
+            null,
+            null
+        )
+
+        if (cursor.moveToFirst()) {
+            do {
+                val song = Song()
+                song.id = cursor.getInt(cursor.getColumnIndex("id"))
+                song.title = cursor.getString(cursor.getColumnIndex("title"))
+                song.artist = cursor.getString(cursor.getColumnIndex("artist"))
+                song.lyrics = cursor.getString(cursor.getColumnIndex("lyrics"))
+                song.tags = cursor.getString(cursor.getColumnIndex("tags"))
+
+                listSongs.add(song)
+            } while (cursor.moveToNext())
+        }
+        db.close()
+        return listSongs
+    }
 
 
 }

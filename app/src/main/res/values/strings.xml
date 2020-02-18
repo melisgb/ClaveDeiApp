@@ -15,8 +15,8 @@
     <string name="toast_song_deleted">Cancion Eliminada</string>
 
     <!--  Buscar canciones  -->
-    <string name="search_Song">Busca la cancion por artista o titulo</string>
-    <string name="searchSongs_title">Busca la cancion por artista o titulo</string>
+    <string name="searchSongs_title">LISTADO DE CANCIONES</string>
+    <string name="searchSongs_searchBarHint">Buscar canciones</string>
 
     <!--  Editar canciones   -->
     <string name="createSongs_title">REGISTRO DE CANCION</string>

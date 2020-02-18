@@ -88,6 +88,9 @@ class CreateSongActivity : AppCompatActivity() {
             val myToast = Toast.makeText(applicationContext, R.string.toast_song_updated,  Toast.LENGTH_SHORT)
             myToast.setGravity(Gravity.BOTTOM, 0, 50)
             myToast.show()
+
+            val intent = Intent(this, SearchSongsActivity::class.java)
+            startActivity(intent)
         }
 
         deleteSong_btn.setOnClickListener {
