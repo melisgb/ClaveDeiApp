@@ -18,14 +18,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    s
+
 
     <androidx.gridlayout.widget.GridLayout
         android:layout_width="match_parent"
         android:layout_height="280dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginEnd="16dp"
         app:columnCount="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -36,6 +36,7 @@
             android:id="@+id/p1_Entrada_btn"
             android:layout_width="187dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="9dp"
             android:background="@drawable/round_shape_btn"
             android:text="@string/button_EntrancePart"
@@ -56,6 +57,7 @@
             android:id="@+id/p3_Gloria_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="9dp"
             android:background="@drawable/round_shape_btn"
             android:text="@string/button_GloryPart"
@@ -76,6 +78,7 @@
             android:id="@+id/p5_Proclamacion_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/round_shape_btn"
             android:text="@string/button_AlelluiaPart"
@@ -96,6 +99,7 @@
             android:id="@+id/p7_Paz_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="9dp"
             android:background="@drawable/round_shape_btn"
             android:text="@string/button_PeacePart"
@@ -116,6 +120,7 @@
             android:id="@+id/p9_Comunion_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="9dp"
             android:background="@drawable/round_shape_btn"
             android:text="@string/button_CommunionPart"

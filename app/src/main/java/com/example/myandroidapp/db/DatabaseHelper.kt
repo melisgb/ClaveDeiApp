@@ -36,7 +36,7 @@ class DatabaseHelper(context: Context) :
 
     fun getSongs(): List<Song> {
         val listSongs = ArrayList<Song>()
-        val selectQuery = "SELECT * FROM SONG"
+        val selectQuery = "SELECT * FROM SONG ORDER BY TITLE"
         val db = this.writableDatabase
         val cursor = db.rawQuery(selectQuery, null)
         if (cursor.moveToFirst()) {
@@ -139,6 +139,37 @@ class DatabaseHelper(context: Context) :
         return listSongs
     }
 
+    fun searchSongsByTags(keyword: String): List<Song> {
+        val listSongs = ArrayList<Song>()
+        val db = this.writableDatabase
+
+        val cursor = db.query(
+            true,
+            "SONG",
+            null,
+            "title LIKE ? or tags LIKE ?",
+            arrayOf("%$keyword%", "%$keyword%"),
+            null,
+            null,
+            null,
+            null
+        )
+
+        if (cursor.moveToFirst()) {
+            do {
+                val song = Song()
+                song.id = cursor.getInt(cursor.getColumnIndex("id"))
+                song.title = cursor.getString(cursor.getColumnIndex("title"))
+                song.artist = cursor.getString(cursor.getColumnIndex("artist"))
+                song.lyrics = cursor.getString(cursor.getColumnIndex("lyrics"))
+                song.tags = cursor.getString(cursor.getColumnIndex("tags"))
+
+                listSongs.add(song)
+            } while (cursor.moveToNext())
+        }
+        db.close()
+        return listSongs
+    }
 
 }
 

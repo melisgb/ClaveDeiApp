@@ -1,30 +1,41 @@
 package com.example.myandroidapp
 
+import android.app.AlertDialog
 import android.app.SearchManager
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ContextMenu
 import android.view.Menu
 import android.view.View
+import android.widget.ListView
 import android.widget.SearchView
 import android.widget.Toast
 import com.example.myandroidapp.Adapter.ListSongsAdapter
 import com.example.myandroidapp.Model.Song
 import com.example.myandroidapp.db.DatabaseHelper
 import kotlinx.android.synthetic.main.activity_search_songs.*
-import kotlinx.android.synthetic.main.list_elem_search_songs.view.*
 
 class SearchSongsActivity : AppCompatActivity() {
 
     internal lateinit var db: DatabaseHelper
+    var s_keyword : String? = null
+
+    companion object {
+        const val EXTRA_KEYWORD = "s_keyword"
+    }
+
+    fun searchSpecificSongs() {
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_songs)
 
         db = DatabaseHelper(this)
+//        searchSpecificSongs()
 
         val listSongs = db.getSongs()
         val adapter =  ListSongsAdapter(this, listSongs)
@@ -35,8 +46,13 @@ class SearchSongsActivity : AppCompatActivity() {
             val intent = Intent(this, CreateSongActivity::class.java)
             intent.putExtra(CreateSongActivity.EXTRA_SONG_ID, id)
             startActivity(intent)
-
         }
+
+//        songs_lstView.setOnItemLongClickListener{parent, view, position, id ->
+//
+//        }
+
+
     }
 
     // implementation of the searchBar
@@ -71,6 +87,15 @@ class SearchSongsActivity : AppCompatActivity() {
                 return false
             }
         })
+
+        val keyword_extra: String? = this.intent.getStringExtra(EXTRA_KEYWORD)
+
+        if (!keyword_extra.isNullOrEmpty()) {
+            searchView.setQuery(keyword_extra, true)
+        }
+
         return true
     }
+
+
 }

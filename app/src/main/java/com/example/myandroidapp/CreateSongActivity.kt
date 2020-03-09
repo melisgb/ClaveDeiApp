@@ -22,7 +22,7 @@ class CreateSongActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_SONG_ID = "song_id"
     }
-
+    // To hide keyboard
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         if (currentFocus != null) {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
