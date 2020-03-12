@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.list_elem_search_songs.view.*
 
 // This is required for the ListView
 class ListSongsAdapter(internal var activity: Activity,
-                       internal var listSong: List<Song>):BaseAdapter(){
+                       var listSong: List<Song>):BaseAdapter(){
 
     internal var inflater:LayoutInflater
 

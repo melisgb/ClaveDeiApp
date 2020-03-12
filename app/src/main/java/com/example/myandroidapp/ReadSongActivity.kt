@@ -2,10 +2,6 @@ package com.example.myandroidapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.myandroidapp.Adapter.ListSongsAdapter
-import com.example.myandroidapp.Model.Song
-import com.example.myandroidapp.db.DatabaseHelper
-import kotlinx.android.synthetic.main.activity_read_song.*
 
 class ReadSongActivity : AppCompatActivity() {
 

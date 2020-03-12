@@ -52,10 +52,5 @@ class SearchSongsBySeasonsActivity : AppCompatActivity() {
             intent.putExtra(SearchSongsActivity.EXTRA_KEYWORD, "Pentecostes")
             startActivity(intent)
         }
-        s6_Pentecostes_btn.setOnClickListener{
-            val intent = Intent(this, SearchSongsActivity::class.java)
-            intent.putExtra(SearchSongsActivity.EXTRA_KEYWORD, "Pentecostes")
-            startActivity(intent)
-        }
     }
 }

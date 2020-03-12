@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/createSongTitle_TxtView"
+        android:id="@+id/ceateSongTitle_TxtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -30,8 +30,9 @@
         android:hint="@string/txtHint_songTitle"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createSongTitle_TxtView" />
+        app:layout_constraintTop_toBottomOf="@+id/ceateSongTitle_TxtView" />
 
     <EditText
         android:id="@+id/songArtist_editTxt"
@@ -68,10 +69,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:autofillHints=""
         android:ems="10"
+        android:focusable="true"
         android:hint="@string/txtHint_songTags"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -79,8 +80,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/songLyrics_editTxt"
-        app:layout_constraintVertical_bias="0.05"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.05" />
 
     <!--    <ListView-->
 <!--        android:id="@+id/listSongs_listView"-->
@@ -126,4 +126,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="top" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

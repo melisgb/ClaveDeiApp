@@ -28,16 +28,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchSongsTitle_txtView" />
+        app:layout_constraintTop_toBottomOf="@+id/searchSongsTitle_txtView"
+        android:divider="@color/gray"
+        android:dividerHeight="1dp" />
 
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#00141313"
-        app:barrierDirection="top"
-        tools:layout_editor_absoluteY="656dp" />
+<!--    <androidx.constraintlayout.widget.Barrier-->
+<!--        android:id="@+id/barrier"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:backgroundTint="#00141313"-->
+<!--        app:barrierDirection="top"-->
+<!--        tools:layout_editor_absoluteY="656dp" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

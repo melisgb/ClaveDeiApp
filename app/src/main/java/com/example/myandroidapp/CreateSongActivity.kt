@@ -11,8 +11,6 @@ import android.widget.Toast
 import com.example.myandroidapp.Model.Song
 import com.example.myandroidapp.db.DatabaseHelper
 import kotlinx.android.synthetic.main.activity_create_song.*
-import kotlinx.android.synthetic.main.activity_search_songs.*
-import kotlinx.android.synthetic.main.list_elem_search_songs.view.*
 
 class CreateSongActivity : AppCompatActivity() {
 

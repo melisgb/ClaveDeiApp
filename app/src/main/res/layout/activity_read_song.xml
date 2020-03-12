@@ -7,69 +7,100 @@
     android:background="#230027B3"
     tools:context=".ReadSongActivity">
 
-    <TextView
-        android:id="@+id/songTitleTxtView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Song Name"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/songLyricsTxtView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_weight="1"
-        android:lineSpacingExtra="8sp"
-        android:text="0"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/songTitleTxtView" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/songArtistTxtView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Song Artist"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/songLyricsTxtView" />
+        <TextView
+            android:id="@+id/readSongTitleTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/viewSongTitle"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="@+id/songArtistTxtView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/songTagsTxtView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="Song Tags"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/songLyricsTxtView" />
+        <EditText
+            android:id="@+id/songTitleTxtView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="8sp"
+            android:autofillHints=""
+            android:ems="10"
+            android:enabled="false"
+            android:hint="@string/txtHint_songTitle"
+            android:inputType="textPersonName"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/readSongTitleTxtView" />
 
-    <TextView
-        android:id="@+id/songIdTxtView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:gravity="right"
-        android:inputType="number"
-        android:text="ID"
-        app:layout_constraintBottom_toBottomOf="@+id/songTitleTxtView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/songTitleTxtView" />
+        <EditText
+            android:id="@+id/songArtistTxtView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8sp"
+            android:layout_marginRight="8sp"
+            android:autofillHints=""
+            android:ems="10"
+            android:enabled="false"
+            android:hint="@string/txtHint_songArtist"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/songTitleTxtView" />
+
+        <EditText
+            android:id="@+id/songLyricsTxtView"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="8sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="8sp"
+            android:autofillHints=""
+            android:ems="10"
+            android:enabled="false"
+            android:hint="@string/txtHint_songLyrics"
+            android:inputType="textLongMessage|textMultiLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/songArtistTxtView" />
+
+        <EditText
+            android:id="@+id/songTagsTxtView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:enabled="false"
+            android:hint="@string/txtHint_songTags"
+            android:inputType="textMultiLine"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/songLyricsTxtView"
+            app:layout_constraintVertical_bias="0.05" />
+
+        <!--    <ListView-->
+        <!--        android:id="@+id/listSongs_listView"-->
+        <!--        android:layout_width="393dp"-->
+        <!--        android:layout_height="240dp"-->
+        <!--        android:choiceMode="singleChoice"-->
+        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

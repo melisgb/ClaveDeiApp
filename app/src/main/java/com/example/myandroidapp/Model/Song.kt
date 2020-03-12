@@ -9,7 +9,7 @@ class Song  : Serializable {
     var lyrics: String?= null
     var tags: String?= null
 
-    constructor(){}
+    constructor()
 
     constructor(id:Int, title:String, artist:String, lyrics:String, tags:String){
         this.id = id

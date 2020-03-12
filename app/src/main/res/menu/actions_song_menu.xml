@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<!--    <item-->
+<!--        android:id="@+id/action_increaseTone"-->
+<!--        android:title="increase"-->
+<!--        app:showAsAction="ifRoom"-->
+<!--        android:icon="@drawable/search_icon_white"/>-->
+    <item
+        android:id="@+id/action_addToList"
+        android:title="@string/add_toList"
+        app:showAsAction="always"
+        android:iconTint="@color/white"
+        android:icon="@drawable/add_list_icon"/>
+    <item
+        android:id="@+id/action_addToFavs"
+        android:title="@string/add_toFavs"
+        app:showAsAction="always"
+        android:iconTint="@color/white"
+        android:icon="@drawable/add_favs_icon"/>
+<!--    <item-->
+<!--        android:id="@+id/action_editSong"-->
+<!--        android:title="@string/edit_song"-->
+<!--        app:showAsAction="always"-->
+<!--        android:iconTint="@color/white"-->
+<!--        android:icon="@drawable/edit_song_icon"/>-->
+    <item
+        android:id="@+id/action_deleteSong"
+        android:title="@string/button_deleteSong"
+        app:showAsAction="always"
+        android:iconTint="@color/white"
+        android:icon="@drawable/ic_delete_icon"/>
+</menu>

@@ -23,12 +23,6 @@ class MainActivity : AppCompatActivity() {
 //        }
 //        startActivity(intent)
 //    }
-
-//    fun searchSongsBySeason(view: View){
-//        val intent = Intent(this, SearchSongsBySeasonsActivity::class.java)
-//        startActivity(intent)
-//
-//    }
         val searchAllButton = findViewById<Button>(R.id.buscarCancionesMBtn)
         searchAllButton.setOnClickListener{
             val intent = Intent(this, SearchSongsActivity::class.java)
