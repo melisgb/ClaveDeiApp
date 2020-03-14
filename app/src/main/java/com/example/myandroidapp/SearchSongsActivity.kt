@@ -6,9 +6,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.CheckBox
-import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import com.example.myandroidapp.Adapter.ListSongsAdapter
 import com.example.myandroidapp.Model.Song
 import com.example.myandroidapp.db.DatabaseHelper
@@ -31,7 +31,7 @@ class SearchSongsActivity : AppCompatActivity() {
             // Inflate a menu resource providing context menu items
             val inflater: MenuInflater = mode.menuInflater
             inflater.inflate(R.menu.actions_song_menu, menu)
-            mode.title = "Choose action"
+            mode.title = "Elige una opcion"
             return true
         }
         // Called each time the action mode is shown. Always called after onCreateActionMode.
@@ -43,9 +43,9 @@ class SearchSongsActivity : AppCompatActivity() {
         override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
             return when (item.itemId) {
                 R.id.action_addToList -> {
-                    Toast.makeText(this@SearchSongsActivity, "Add To List", Toast.LENGTH_SHORT).show()
-
                     Toast.makeText(this@SearchSongsActivity, "Songs list $selected_Set", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this@SearchSongsActivity, "Add To List", Toast.LENGTH_SHORT).show()
+
                     var myListSongs = ArrayList<Song>()
                     for(songID in selected_Set){
                         myListSongs.add(db.getSong(songID)!!)
@@ -55,13 +55,14 @@ class SearchSongsActivity : AppCompatActivity() {
 
                     val intent = Intent(this@SearchSongsActivity, ReadMyListActivity::class.java)
                     startActivity(intent)
-
+                    refreshAll()
 
                     mode.finish() // Action picked, so close the CAB
                     true
                 }
                 R.id.action_addToFavs -> {
                     Toast.makeText(this@SearchSongsActivity, "Add Favs", Toast.LENGTH_SHORT).show()
+                    refreshAll()
                     mode.finish() // Action picked, so close the CAB
                     true
                 }
@@ -70,14 +71,14 @@ class SearchSongsActivity : AppCompatActivity() {
                     for(song in selected_Set){
                         db.deleteSong(db.getSong(song)!!)
                     }
-                    refreshAll()
                     adapter?.listSong = db.getSongs()
-                    adapter?.notifyDataSetChanged()
+                    refreshAll()
 //                    val intent = Intent(this@SearchSongsActivity, SearchSongsActivity::class.java)
 //                    startActivity(intent)
                     mode.finish() // Action picked, so close the CAB
                     true
                 }
+
                 else ->
                     false
             }
@@ -116,6 +117,10 @@ class SearchSongsActivity : AppCompatActivity() {
                 val checkbox = view.findViewById<CheckBox>(songCheckBox.id)
                 checkbox.isChecked = false
                 checkbox.visibility = View.INVISIBLE
+
+                if(selected_Set.isEmpty()) {
+                    actionMode?.finish()
+                }
             }
             else if(!selected_Set.contains(id)){
                 selected_Set.add(id)
@@ -134,6 +139,10 @@ class SearchSongsActivity : AppCompatActivity() {
                 val checkbox = view.findViewById<CheckBox>(songCheckBox.id)
                 checkbox.isChecked = false
                 checkbox.visibility = View.INVISIBLE
+
+                if(selected_Set.isEmpty()) {
+                    actionMode?.finish()
+                }
             }
             else if(!selected_Set.contains(id)) {
                 selected_Set.add(id)
@@ -143,20 +152,19 @@ class SearchSongsActivity : AppCompatActivity() {
             }
 
             //agregar menu de songs
-            when (actionMode) {
-                null -> {
-                    // Start the CAB using the ActionMode.Callback defined above
-                    actionMode = this@SearchSongsActivity.startActionMode(actionModeCallback)
-//                    view.isSelected = true
-                    true
+            if(!selected_Set.isEmpty()) {
+                when (actionMode) {
+                    null -> {
+                        // Start the CAB using the ActionMode.Callback defined above
+                        actionMode = this@SearchSongsActivity.startActionMode(actionModeCallback)
+                    }
                 }
-                else -> true
+
             }
+            true
         }
 
     }
-
-
 
     // implementation of the searchBar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -166,27 +174,26 @@ class SearchSongsActivity : AppCompatActivity() {
         val manager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchItem = menu?.findItem(R.id.search_bar)
         val searchView = searchItem?.actionView as SearchView
-
         searchView.setSearchableInfo(manager.getSearchableInfo(componentName))
+        searchView.queryHint = "Buscar..."
+        searchView.maxWidth = Int.MAX_VALUE
 
+        searchItem.setOnMenuItemClickListener {
+            Toast.makeText(this@SearchSongsActivity, "SearchItem clicked", Toast.LENGTH_SHORT).show()
+            true
+        }
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                searchView.clearFocus()
-                searchView.setQuery("", false)
-                searchItem.collapseActionView()
+                return false
+            }
+
+            override fun onQueryTextChange(query: String?): Boolean {
                 Toast.makeText(this@SearchSongsActivity, "Looking for $query", Toast.LENGTH_SHORT).show()
 
                 val listSongs1 = db.searchSongs(query!!)
                 val adapter = ListSongsAdapter(this@SearchSongsActivity , listSongs1)
                 songs_lstView.adapter = adapter
-
-
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-//                Toast.makeText(this@SearchSongsActivity, "Looking for $newText", Toast.LENGTH_SHORT).show()
                 return false
             }
         })
@@ -202,6 +209,8 @@ class SearchSongsActivity : AppCompatActivity() {
 
     fun refreshAll(){
         selected_Set.clear()
+        adapter?.notifyDataSetChanged()
+
     }
 }
 

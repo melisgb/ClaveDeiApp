@@ -3,9 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/search_bar"
-        android:title="@string/searchSongs_searchBarHint"
         android:icon="@drawable/search_icon_white"
-        app:actionViewClass="android.widget.SearchView"
+        android:iconTint="#FFFFFF"
+        android:title="@string/searchSongs_searchBarHint"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="collapseActionView|ifRoom" />
 
 
