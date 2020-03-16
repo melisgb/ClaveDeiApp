@@ -61,13 +61,18 @@ class SearchSongsActivity : AppCompatActivity() {
                     true
                 }
                 R.id.action_addToFavs -> {
-                    Toast.makeText(this@SearchSongsActivity, "Add Favs", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@SearchSongsActivity, "Added to Favorites", Toast.LENGTH_SHORT).show()
+                    for(song in selected_Set){
+                        println("TO EDIT")
+                    }
+
                     refreshAll()
+
                     mode.finish() // Action picked, so close the CAB
                     true
                 }
                 R.id.action_deleteSong -> {
-                    Toast.makeText(this@SearchSongsActivity, "Deleting $selected_Set", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@SearchSongsActivity, "Deleted songs $selected_Set", Toast.LENGTH_SHORT).show()
                     for(song in selected_Set){
                         db.deleteSong(db.getSong(song)!!)
                     }
@@ -87,6 +92,7 @@ class SearchSongsActivity : AppCompatActivity() {
         // Called when the user exits the action mode
         override fun onDestroyActionMode(mode: ActionMode){
             actionMode = null
+            refreshAll()
         }
     }
 
@@ -201,7 +207,9 @@ class SearchSongsActivity : AppCompatActivity() {
         val keyword_extra: String? = this.intent.getStringExtra(EXTRA_KEYWORD)
 
         if (!keyword_extra.isNullOrEmpty()) {
-            searchView.setQuery(keyword_extra, true)
+            db.searchSongsByTags(keyword_extra)
+            adapter?.notifyDataSetChanged()
+//            searchView.setQuery(keyword_extra, true)
         }
 
         return true
