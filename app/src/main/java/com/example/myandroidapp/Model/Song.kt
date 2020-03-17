@@ -3,11 +3,11 @@ package com.example.myandroidapp.Model
 import java.io.Serializable
 
 class Song  : Serializable {
-    var id: Int = 0
-    var title: String?= null
-    var artist: String?= null
-    var lyrics: String?= null
-    var tags: String?= null
+    var id: Int
+    var title: String
+    var artist: String
+    var lyrics: String
+    var tags: String
 
 
     constructor(id:Int, title:String, artist:String, lyrics:String, tags:String){

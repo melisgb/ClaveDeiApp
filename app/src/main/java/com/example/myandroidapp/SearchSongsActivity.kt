@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.example.myandroidapp.Adapter.ListSongsAdapter
 import com.example.myandroidapp.Model.Song
+import com.example.myandroidapp.Model.SongsList
 import com.example.myandroidapp.db.DatabaseHelper
 import kotlinx.android.synthetic.main.activity_search_songs.*
 import kotlinx.android.synthetic.main.list_elem_search_songs.*
@@ -19,10 +20,10 @@ import kotlinx.android.synthetic.main.list_elem_search_songs.*
 class SearchSongsActivity : AppCompatActivity() {
 
     internal lateinit var db: DatabaseHelper
-    var s_keyword : String? = null
-    var selected_Set = HashSet<Long>()
-    var actionMode : ActionMode? = null
     var adapter : ListSongsAdapter? = null
+    var s_keyword : String? = null
+    var selected_Set = HashSet<Int>()
+    var actionMode : ActionMode? = null
 
 //    implementation of Songs Action mode - later implement it as class and interface.
     private val actionModeCallback = object : ActionMode.Callback {
@@ -53,7 +54,7 @@ class SearchSongsActivity : AppCompatActivity() {
 
 //                    val adapter = ListSongsAdapter(this, myListSongs)
 
-                    val intent = Intent(this@SearchSongsActivity, ReadMyListActivity::class.java)
+                    val intent = Intent(this@SearchSongsActivity, ReadListsActivity::class.java)
                     startActivity(intent)
                     refreshAll()
 
@@ -62,8 +63,19 @@ class SearchSongsActivity : AppCompatActivity() {
                 }
                 R.id.action_addToFavs -> {
                     Toast.makeText(this@SearchSongsActivity, "Added to Favorites", Toast.LENGTH_SHORT).show()
-                    for(song in selected_Set){
-                        println("TO EDIT")
+
+                    val songsPerList = HashMap<Int, Song>()
+
+                    for (songID in selected_Set) {
+                        songsPerList[songID] = db.getSong(songID)!!
+
+                    }
+                    val favSongsListID = db.searchSongsListByName("Favorites")
+                    if(favSongsListID > 0) {
+                        db.updateSongsList(SongsList(favSongsListID, "Favorites", songsPerList))
+                    }
+                    else {
+                        db.addSongsList("Favorites", songsPerList.values.toList())
                     }
 
                     refreshAll()
@@ -112,7 +124,8 @@ class SearchSongsActivity : AppCompatActivity() {
         songs_lstView.adapter = adapter
 
 
-        songs_lstView.setOnItemClickListener { parent, view, position, id ->
+        songs_lstView.setOnItemClickListener { parent, view, position, longID ->
+            val id = longID.toInt()
             if(selected_Set.isEmpty()) {
                 val intent = Intent(this, CreateSongActivity::class.java)
                 intent.putExtra(CreateSongActivity.EXTRA_SONG_ID, id)
@@ -137,9 +150,9 @@ class SearchSongsActivity : AppCompatActivity() {
 
 
         }
-        songs_lstView.setOnItemLongClickListener { parent, view, position, id ->
+        songs_lstView.setOnItemLongClickListener { parent, view, position, longID ->
             Toast.makeText(this@SearchSongsActivity, "Long click on $position", Toast.LENGTH_SHORT).show()
-
+            val id = longID.toInt()
             if(selected_Set.contains(id)) {
                 selected_Set.remove(id)
                 val checkbox = view.findViewById<CheckBox>(songCheckBox.id)
@@ -207,9 +220,12 @@ class SearchSongsActivity : AppCompatActivity() {
         val keyword_extra: String? = this.intent.getStringExtra(EXTRA_KEYWORD)
 
         if (!keyword_extra.isNullOrEmpty()) {
-            db.searchSongsByTags(keyword_extra)
-            adapter?.notifyDataSetChanged()
+//            searchItem.expandActionView()
 //            searchView.setQuery(keyword_extra, true)
+            val listSongs1 = db.searchSongsByTags(keyword_extra)
+            val adapter = ListSongsAdapter(this@SearchSongsActivity , listSongs1)
+            songs_lstView.adapter = adapter
+
         }
 
         return true

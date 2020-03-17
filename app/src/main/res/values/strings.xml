@@ -57,12 +57,14 @@
     <!--  Editar mi lista  -->
     <string name="edit_listName">Asigna un nombre de lista</string>
     <string name="add_toList">Anadir a lista</string>
-    <string name="readMyList_title">Mi lista</string>
+    <string name="readLists_title">Mis listas</string>
 <!--    -->
     <string name="add_toFavs">Anadir a Favoritos</string>
     <string name="increase_Tone">Subir tono</string>
     <string name="edit_song">Edit</string>
     <string name="viewSongTitle">VIEW SONG</string>
     <string name="songActionsTitle">Elige una opcion</string>
+    <string name="listName">List Name</string>
+    <string name="listQtySongs">Qty</string>
 
 </resources>

@@ -8,11 +8,10 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.example.myandroidapp.Model.Song
 import com.example.myandroidapp.R
-import kotlinx.android.synthetic.main.list_elem_search_songs.view.*
+import kotlinx.android.synthetic.main.list_elem_view_songs_list.view.*
 
-// This is required for the ListView
-class ListSongsAdapter(internal var activity: Activity,
-                       var listSong: List<Song>):BaseAdapter(){
+class ListOfSongsPerListAdapter(internal var activity: Activity,
+                                 var listOfSongsPerList: List<Song>): BaseAdapter(){
 
     internal var inflater:LayoutInflater
 
@@ -21,27 +20,25 @@ class ListSongsAdapter(internal var activity: Activity,
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val songView: View = inflater.inflate(R.layout.list_elem_search_songs, null)
+        val songView: View = inflater.inflate(R.layout.list_elem_view_songs_list, null)
 
-        songView.songTitleTxtView.text = listSong[position].title
-        songView.songArtistTxtView.text = listSong[position].artist
-        songView.songTagsTxtView.text = listSong[position].tags
+        songView.songTitleOnListTxtView.text = listOfSongsPerList[position].title
+//        songView.songCkBoxOnListCheckBox
+//        songView.songImgOnListImageView
 
         return songView
-
     }
 
     override fun getItem(position: Int): Any {
-        return listSong[position]
+        return listOfSongsPerList[position]
     }
 
     override fun getItemId(position: Int): Long {
-        return listSong[position].id.toLong()
+        return listOfSongsPerList[position].id.toLong()
 
     }
 
     override fun getCount(): Int {
-        return listSong.size
+        return listOfSongsPerList.size
     }
 }
-

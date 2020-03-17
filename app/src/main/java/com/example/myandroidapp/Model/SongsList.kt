@@ -4,16 +4,15 @@ package com.example.myandroidapp.Model
 import java.io.Serializable
 
 class SongsList  : Serializable {
-    var id: Int = 0
-    var name: String?= null
-    var songs: ArrayList<Song>?= null
+    var id: Int
+    var name: String
+    var songs: HashMap<Int, Song>
 
-    constructor()
 
-    constructor(id:Int, name:String, songs:ArrayList<Song>){
+    constructor(id:Int, name:String, songs: HashMap<Int, Song>){
         this.id = id
-        this.name=name
-        this.songs=ArrayList<Song>()
+        this.name = name
+        this.songs = songs
 
     }
 

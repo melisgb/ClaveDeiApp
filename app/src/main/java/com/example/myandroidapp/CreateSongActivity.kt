@@ -30,10 +30,10 @@ class CreateSongActivity : AppCompatActivity() {
     }
 
     fun fillSong() {
-        val songId_extra: Long = this.intent.getLongExtra(EXTRA_SONG_ID, 0)
+        val songId_extra = this.intent.getIntExtra(EXTRA_SONG_ID, 0)
         val current_Song: Song? = db.getSong(songId_extra)
 
-        if (songId_extra != 0L) {
+        if (songId_extra != 0) {
             song_id = current_Song?.id
             songTitle_editTxt.setText(current_Song?.title)
             songArtist_editTxt.setText(current_Song?.artist)

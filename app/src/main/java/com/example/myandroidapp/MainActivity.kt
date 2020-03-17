@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         val myListButton = findViewById<Button>(R.id.verMiListaMBtn)
         myListButton.setOnClickListener{
-            val intent = Intent(this, ReadMyListActivity::class.java)
+            val intent = Intent(this, ReadListsActivity::class.java)
             startActivity(intent)
         }
 
