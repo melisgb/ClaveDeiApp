@@ -71,8 +71,20 @@ class SearchSongsActivity : AppCompatActivity() {
 
                     }
                     val favSongsListID = db.searchSongsListByName("Favorites")
+
                     if(favSongsListID > 0) {
-                        db.updateSongsList(SongsList(favSongsListID, "Favorites", songsPerList))
+                        //   verify before updating/adding in Favorites SongsList
+                        val oldFavsList = db.getSongsList(favSongsListID)
+                        for(songID in selected_Set){
+                            if(!oldFavsList.songs.containsKey(songID)){
+                                oldFavsList.songs[songID] = db.getSong(songID)!!
+                            }
+                            else{
+                                print("${songID} already exists")
+                            }
+
+                        }
+                        db.updateSongsList(SongsList(favSongsListID, "Favorites", oldFavsList.songs))
                     }
                     else {
                         db.addSongsList("Favorites", songsPerList.values.toList())
