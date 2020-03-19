@@ -1,15 +1,17 @@
 package com.example.myandroidapp
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.MotionEvent
+import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myandroidapp.Adapter.ListOfSongsPerListAdapter
-import com.example.myandroidapp.Model.Song
 import com.example.myandroidapp.Model.SongsList
 import com.example.myandroidapp.db.DatabaseHelper
 import kotlinx.android.synthetic.main.activity_view_list.*
@@ -32,7 +34,6 @@ class ViewListActivity : AppCompatActivity() {
         }
         return super.dispatchTouchEvent(ev)
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,5 +60,56 @@ class ViewListActivity : AppCompatActivity() {
             intent.putExtra(CreateSongActivity.EXTRA_SONG_ID, id)
             startActivity(intent)
         }
+
+
+        songsFromListLstView.setOnItemLongClickListener { parent, view, position, longID ->
+            val id = longID.toInt()
+            val res = showSongPopUpMenu(view, listId_extra , id)
+            true
+        }
+
+
+
     }
+    fun refreshAll() {
+        adapter?.notifyDataSetChanged()
+    }
+
+    @SuppressLint("NewApi")
+    fun showSongPopUpMenu(v : View, listID : Int?, songID : Int){
+        val popup = PopupMenu(this, v, Gravity.RIGHT )
+        popup.setOnMenuItemClickListener { item ->
+             when (item?.itemId) {
+                 R.id.option_song_delete -> {
+                     db.deleteSongsList(songID, db.getSongsList(listID!!))
+                     adapter?.listOfSongsPerList = db.getSongsList(listID).songs.values.toList()
+                     refreshAll()
+                     true
+                 }
+                 R.id.option_song_share -> {
+//                    implement the share function
+                    val sharingIntent = Intent(Intent.ACTION_SEND)
+                    sharingIntent.setType("text/plain")
+                    sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Cancion ID: ${songID}")
+
+                    val stringOfSong = ArrayList<String>()
+                     stringOfSong.add("${songID} : ${db.getSong(songID)?.title}")
+
+                    sharingIntent.putExtra(Intent.EXTRA_TEXT, stringOfSong.toString())
+                    startActivity(Intent.createChooser(sharingIntent, "Share via"))
+
+                    true
+                }
+
+                else ->
+                    false
+            }
+        }
+        popup.inflate(R.menu.song_popup_menu)
+        popup.setForceShowIcon(true)
+        popup.show()
+    }
+
+
 }
+

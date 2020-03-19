@@ -99,6 +99,7 @@ class SearchSongsActivity : AppCompatActivity() {
                     Toast.makeText(this@SearchSongsActivity, "Deleted songs $selected_Set", Toast.LENGTH_SHORT).show()
                     for(song in selected_Set){
                         db.deleteSong(db.getSong(song)!!)
+                       
                     }
                     adapter?.listSong = db.getSongs()
                     refreshAll()

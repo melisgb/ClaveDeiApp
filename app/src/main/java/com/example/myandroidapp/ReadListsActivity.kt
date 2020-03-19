@@ -68,7 +68,7 @@ class ReadListsActivity : AppCompatActivity() {
 
                     val stringOfSongs = ArrayList<String>()
                     stringOfSongs.add("Lista  ${list.name} :")
-                    var iter : Int = 0
+                    var iter = 0
                     for(song in list.songs.values) {
                         iter += 1
                         stringOfSongs.add("${iter} - '${song.title}'")
@@ -98,7 +98,7 @@ class ReadListsActivity : AppCompatActivity() {
                     false
             }
         }
-        popup.inflate(R.menu.list_pop_up_menu)
+        popup.inflate(R.menu.list_popup_menu)
         popup.setForceShowIcon(true)
         popup.show()
     }
