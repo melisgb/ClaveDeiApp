@@ -66,5 +66,6 @@
     <string name="songActionsTitle">Elige una opcion</string>
     <string name="listName">List Name</string>
     <string name="listQtySongs">Qty</string>
+    <string name="unable_to_delete_this_song">Unable to delete!!. This song belongs to a List</string>
 
 </resources>

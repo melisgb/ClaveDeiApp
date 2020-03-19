@@ -118,11 +118,11 @@ class DatabaseHelper(context: Context) :
         val db = this.writableDatabase
 
         val listSongs = ArrayList<Song>()
-        val selectQuerySongs = "SELECT ls.list_id, s.* FROM LIST_SONGS ls LEFT JOIN SONG s ON ls.song_id = s.id WHERE ls.song_id = ${song.id} ORDER BY s.TITLE"
+        val selectQuerySongs = "SELECT ls.list_id FROM LIST_SONGS ls WHERE ls.song_id = ${song.id}"
         val cursorSongs = db.rawQuery(selectQuerySongs, null)
         val listID : Int
         if (cursorSongs.moveToFirst()) {
-            throw IllegalStateException("Cancion corresponde a una lista")
+            throw IllegalStateException("Esta cancion esta asociada a una lista. No se puede eliminar")
         }
         else{
             //        After checking that the song doesnot belong to any list

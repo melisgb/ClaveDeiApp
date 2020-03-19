@@ -91,16 +91,24 @@ class SearchSongsActivity : AppCompatActivity() {
                     true
                 }
                 R.id.action_deleteSong -> {
-                    Toast.makeText(this@SearchSongsActivity, "Deleted songs $selected_Set", Toast.LENGTH_SHORT).show()
                     for(song in selected_Set){
-                        db.deleteSong(db.getSong(song)!!)
-       //ADD functionality to delete all the records of that Song, in all the lists.
+
+                        //Functionality to delete all the records of that Song, in all the lists.
+                        try{
+                            db.deleteSong(db.getSong(song)!!)
+                        }
+                        catch(e: IllegalStateException){
+//                            showImpossibleSongDeletion()
+                            Toast.makeText(this@SearchSongsActivity, "Unable to delete!. This song belongs to a List", Toast.LENGTH_LONG).show()
+                        }
+                        finally {
+                            adapter?.listSong = db.getSongs()
+                            refreshAll()
+                            mode.finish() // Action picked, so close the CAB
+                        }
+
                     }
-                    adapter?.listSong = db.getSongs()
-                    refreshAll()
-//                    val intent = Intent(this@SearchSongsActivity, SearchSongsActivity::class.java)
-//                    startActivity(intent)
-                    mode.finish() // Action picked, so close the CAB
+
                     true
                 }
 
@@ -239,9 +247,20 @@ class SearchSongsActivity : AppCompatActivity() {
         return true
     }
 
-    fun refreshAll(){
+    fun refreshAll() {
         selected_Set.clear()
         adapter?.notifyDataSetChanged()
+
+    }
+
+
+    fun showImpossibleSongDeletion() {
+        val layout =  layoutInflater.inflate(R.layout.toast_unable_delete, findViewById(R.id.search_songs_activity) as ViewGroup)
+
+        val toast = Toast(applicationContext)
+        toast.duration = Toast.LENGTH_LONG
+        toast.view = layout
+        toast.show()
 
     }
 }
