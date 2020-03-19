@@ -44,21 +44,16 @@ class SearchSongsActivity : AppCompatActivity() {
         override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
             return when (item.itemId) {
                 R.id.action_addToList -> {
-                    Toast.makeText(this@SearchSongsActivity, "Songs list $selected_Set", Toast.LENGTH_SHORT).show()
-//                    Toast.makeText(this@SearchSongsActivity, "Add To List", Toast.LENGTH_SHORT).show()
-
-                    var myListSongs = ArrayList<Song>()
+                    Toast.makeText(this@SearchSongsActivity, "Add to list", Toast.LENGTH_SHORT).show()
+                    val name = "Untitled"
+                    var myListSongs = HashMap<Int, Song>()
                     for(songID in selected_Set){
-                        myListSongs.add(db.getSong(songID)!!)
+                        myListSongs[songID] = db.getSong(songID)!!
                     }
 
-//                    val adapter = ListSongsAdapter(this, myListSongs)
-
-                    val intent = Intent(this@SearchSongsActivity, ReadListsActivity::class.java)
-                    startActivity(intent)
+                    db.addSongsList(name, myListSongs.values.toList())
                     refreshAll()
-
-                    mode.finish() // Action picked, so close the CAB
+                    mode.finish()
                     true
                 }
                 R.id.action_addToFavs -> {
@@ -99,7 +94,7 @@ class SearchSongsActivity : AppCompatActivity() {
                     Toast.makeText(this@SearchSongsActivity, "Deleted songs $selected_Set", Toast.LENGTH_SHORT).show()
                     for(song in selected_Set){
                         db.deleteSong(db.getSong(song)!!)
-                       
+       //ADD functionality to delete all the records of that Song, in all the lists.
                     }
                     adapter?.listSong = db.getSongs()
                     refreshAll()

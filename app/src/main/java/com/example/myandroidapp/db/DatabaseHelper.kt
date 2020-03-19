@@ -13,7 +13,7 @@ class DatabaseHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
         var DATABASE_NAME = "songs_database"
-        private val DATABASE_VERSION = 2
+        private val DATABASE_VERSION = 3
 
         private val CREATE_TABLE_SONG =
             ("CREATE TABLE SONG (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, artist TEXT, lyrics TEXT, tags TEXT);")
@@ -117,7 +117,18 @@ class DatabaseHelper(context: Context) :
     fun deleteSong(song: Song) {
         val db = this.writableDatabase
 
-        db.delete("SONG", "id=?", arrayOf(song.id.toString()))
+        val listSongs = ArrayList<Song>()
+        val selectQuerySongs = "SELECT ls.list_id, s.* FROM LIST_SONGS ls LEFT JOIN SONG s ON ls.song_id = s.id WHERE ls.song_id = ${song.id} ORDER BY s.TITLE"
+        val cursorSongs = db.rawQuery(selectQuerySongs, null)
+        val listID : Int
+        if (cursorSongs.moveToFirst()) {
+            throw IllegalStateException("Cancion corresponde a una lista")
+        }
+        else{
+            //        After checking that the song doesnot belong to any list
+            db.delete("SONG", "id=?", arrayOf(song.id.toString()))
+        }
+        cursorSongs.close()
         db.close()
     }
 
