@@ -42,36 +42,7 @@
 <!--                android:drawableLeft="@drawable/ic_launcher_background"/>-->
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/s2_Adviento_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/square_shape_btn"
-                android:text="@string/button_AdventTime"
-                android:textColor="@color/white" />
-            <Space
-                android:layout_width="25dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0" />
-            <Button
-                android:id="@+id/s3_Navidad_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/square_shape_btn"
-                android:text="@string/button_ChristmasTime"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/s4_Cuaresma_btn"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/s2_Adviento_btn" />
-        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -122,7 +93,36 @@
                 android:text="@string/button_PentecostTime"
                 android:textColor="@color/white" />
         </LinearLayout>
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/s2_Adviento_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/square_shape_btn"
+                android:text="@string/button_AdventTime"
+                android:textColor="@color/white" />
+            <Space
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0" />
+            <Button
+                android:id="@+id/s3_Navidad_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/square_shape_btn"
+                android:text="@string/button_ChristmasTime"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/s4_Cuaresma_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/s2_Adviento_btn" />
+        </LinearLayout>
 
     </LinearLayout>
 

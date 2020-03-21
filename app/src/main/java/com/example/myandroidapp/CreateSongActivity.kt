@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.example.myandroidapp.Model.Song
 import com.example.myandroidapp.db.DatabaseHelper
 import kotlinx.android.synthetic.main.activity_create_song.*
+import kotlin.random.Random
 
 class CreateSongActivity : AppCompatActivity() {
 
@@ -41,6 +42,9 @@ class CreateSongActivity : AppCompatActivity() {
             songTags_editTxt.setText(current_Song?.tags)
             createSong_btn.isEnabled = false
         }
+        else{
+            updateSong_btn.isEnabled = false
+        }
     }
 
 
@@ -49,6 +53,7 @@ class CreateSongActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_song)
 
         db = DatabaseHelper(this)
+//        populateSongs(15)
         fillSong()
 
 
@@ -67,6 +72,7 @@ class CreateSongActivity : AppCompatActivity() {
             val myToast = Toast.makeText(applicationContext, R.string.toast_song_created, Toast.LENGTH_SHORT)
             myToast.setGravity(Gravity.BOTTOM, 0, 50)
             myToast.show()
+
 
             val intent = Intent(this, SearchSongsActivity::class.java)
             startActivity(intent)
@@ -99,14 +105,57 @@ class CreateSongActivity : AppCompatActivity() {
                 songLyrics_editTxt.text.toString(),
                 songTags_editTxt.text.toString()
             )
-            db.deleteSong(song)
 
-            val myToast = Toast.makeText(applicationContext, R.string.toast_song_deleted,  Toast.LENGTH_SHORT)
-            myToast.setGravity(Gravity.BOTTOM, 0, 50)
-            myToast.show()
+            var songDeleted = true
+            try{
+                db.deleteSong(song)
+            }
+            catch(e: IllegalStateException){
+//                showImpossibleSongDeletion()
+                songDeleted = false
+                val myToast = Toast.makeText(this, R.string.unable_to_delete_this_song,  Toast.LENGTH_LONG)
+                myToast.setGravity(Gravity.BOTTOM,0,50)
+                myToast.show()
+            }
+            finally {
+                if(songDeleted) {
+                    val myToast = Toast.makeText(this, R.string.toast_song_deleted,  Toast.LENGTH_SHORT)
+                    myToast.setGravity(Gravity.BOTTOM, 0, 50)
+                    myToast.show()
+                }
+            }
 
             val intent = Intent(this, SearchSongsActivity::class.java)
             startActivity(intent)
+
+
+        }
+    }
+
+
+    fun populateSongs(qty: Int) {
+        val charPool : List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
+        val tags = arrayOf<String>( "Ordinario", "Adviento", "Navidad", "Cuaresma", "Pascua", "Pentecostes",
+            "Entrada", "Piedad", "Gloria", "Salmo", "Proclamacion", "Ofertorio", "Paz", "Cordero", "Comunion", "Despedida")
+        val rNames = arrayOf<String>( "Maria", "Gloria", "Alegre", "Jesucristo", "Soldado de", "Pentecostes",
+            "Misericordia", "va conmigo", "del camino", "casa", "Senor", "Acompaname")
+        val STRING_LENGTH = 5;
+
+
+        for(x in 0..qty){
+            val randomString = (1..STRING_LENGTH)
+                .map { i -> Random.nextInt(0, charPool.size) }
+                .map(charPool::get)
+                .joinToString("")
+
+            val song = Song(
+                -1,
+                rNames.random() + " " + rNames.random(),
+                randomString,
+                randomString,
+                tags.random()+ ", " + tags.random()
+            )
+            db.addSong(song)
         }
     }
 }

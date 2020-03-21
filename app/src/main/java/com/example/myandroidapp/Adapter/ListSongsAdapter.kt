@@ -6,13 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import androidx.core.view.isVisible
 import com.example.myandroidapp.Model.Song
 import com.example.myandroidapp.R
 import kotlinx.android.synthetic.main.list_elem_search_songs.view.*
 
 // This is required for the ListView
-class ListSongsAdapter(internal var activity: Activity,
-                       var listSong: List<Song>):BaseAdapter(){
+class ListSongsAdapter(
+    internal var activity: Activity,
+    var listSong: List<Song>,
+    val selectedSet: HashSet<Int>
+):BaseAdapter(){
 
     internal var inflater:LayoutInflater
 
@@ -26,6 +30,12 @@ class ListSongsAdapter(internal var activity: Activity,
         songView.songTitleTxtView.text = listSong[position].title
         songView.songArtistTxtView.text = listSong[position].artist
         songView.songTagsTxtView.text = listSong[position].tags
+
+        if(selectedSet.contains(listSong[position].id)) {
+            songView.songCheckBox.isVisible = true
+            songView.songCheckBox.isChecked = true
+        }
+
 
         return songView
 

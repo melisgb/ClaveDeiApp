@@ -35,7 +35,7 @@ class SearchSongsByPartsActivity : AppCompatActivity() {
 
         p4_Salmos_btn.setOnClickListener {
             val intent = Intent(this, SearchSongsActivity::class.java)
-            intent.putExtra(SearchSongsActivity.EXTRA_KEYWORD, "Salmos")
+            intent.putExtra(SearchSongsActivity.EXTRA_KEYWORD, "Salmo")
             startActivity(intent)
         }
 

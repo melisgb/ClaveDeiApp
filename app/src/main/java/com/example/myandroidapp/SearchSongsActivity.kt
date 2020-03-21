@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.CheckBox
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.example.myandroidapp.Adapter.ListSongsAdapter
@@ -45,14 +46,62 @@ class SearchSongsActivity : AppCompatActivity() {
             return when (item.itemId) {
                 R.id.action_addToList -> {
                     Toast.makeText(this@SearchSongsActivity, "Add to list", Toast.LENGTH_SHORT).show()
-                    val name = "Untitled"
-                    var myListSongs = HashMap<Int, Song>()
-                    for(songID in selected_Set){
-                        myListSongs[songID] = db.getSong(songID)!!
+                    val summaryLists = db.getSummaryLists()
+                    var listNamesA = ArrayList<String>()
+                    for(list in summaryLists) {
+                        listNamesA.add(list.name)
+                    }
+                    listNamesA.add("Nueva Lista")
+                    val listNames = listNamesA.toArray(emptyArray<String>())
+
+
+//                    val listNames = arrayOf("Favorites", "List 2", "List 3", "List 4", "List 5", "List 6", "List 7", "List 8", "List 9", "List 10", "List 11", "List 12", "List 13", "List 14", "List 15", "List 16", "List 17")
+
+
+                    var selected_ListName = ""
+                    val copy_Selected_Set = HashSet<Int>(selected_Set)
+                    val builder = AlertDialog.Builder(this@SearchSongsActivity)
+                    builder.setTitle(R.string.choose_list_to_add_song)
+                    builder.setIcon(R.drawable.add_list_icon)
+                    builder.setSingleChoiceItems(listNames, -1)  { dialogInterface, i ->
+                        selected_ListName = listNames[i]
+
+                        var myListSongs = HashMap<Int, Song>()
+                        for(songID in copy_Selected_Set) {
+                            myListSongs[songID] = db.getSong(songID)!!
+                        }
+                        val listID = db.searchSongsListByName(selected_ListName)
+
+                        if(listID > 0) {
+                            //   verify before updating/adding in Favorites SongsList
+                            val oldSongsList = db.getSongsList(listID)
+                            for(songID in copy_Selected_Set){
+                                if(!oldSongsList.songs.containsKey(songID)){
+                                    oldSongsList.songs[songID] = db.getSong(songID)!!
+                                }
+                                else{
+                                    print("${songID} already exists")
+                                    Toast.makeText(this@SearchSongsActivity, "Song ${songID} is in the List",Toast.LENGTH_SHORT).show()
+                                }
+
+                            }
+                            db.updateSongsList(SongsList(listID, selected_ListName, oldSongsList.songs))
+                        }
+                        else {
+                            db.addSongsList(selected_ListName, myListSongs.values.toList())
+                        }
+                        refreshAll()
+                        dialogInterface.dismiss()
                     }
 
-                    db.addSongsList(name, myListSongs.values.toList())
-                    refreshAll()
+                    builder.setNeutralButton("Cancel") { dialog, which ->
+                        dialog.cancel()
+                    }
+
+                    val mDialog = builder.create()
+                    mDialog.show()
+
+
                     mode.finish()
                     true
                 }
@@ -63,7 +112,6 @@ class SearchSongsActivity : AppCompatActivity() {
 
                     for (songID in selected_Set) {
                         songsPerList[songID] = db.getSong(songID)!!
-
                     }
                     val favSongsListID = db.searchSongsListByName("Favorites")
 
@@ -93,21 +141,19 @@ class SearchSongsActivity : AppCompatActivity() {
                 R.id.action_deleteSong -> {
                     for(song in selected_Set){
 
-                        //Functionality to delete all the records of that Song, in all the lists.
+                        //Functionality to check if the song can be deleted (if doesnot belong to a list)
                         try{
                             db.deleteSong(db.getSong(song)!!)
                         }
                         catch(e: IllegalStateException){
-//                            showImpossibleSongDeletion()
-                            Toast.makeText(this@SearchSongsActivity, "Unable to delete!. This song belongs to a List", Toast.LENGTH_LONG).show()
-                        }
-                        finally {
-                            adapter?.listSong = db.getSongs()
-                            refreshAll()
-                            mode.finish() // Action picked, so close the CAB
+                            showImpossibleSongDeletion()
+                            break
                         }
 
                     }
+                    adapter?.listSong = db.getSongs()
+                    refreshAll()
+                    mode.finish() // Action picked, so close the CAB
 
                     true
                 }
@@ -136,7 +182,7 @@ class SearchSongsActivity : AppCompatActivity() {
 //        searchSpecificSongs()
 
         val listSong = db.getSongs()
-        adapter = ListSongsAdapter(this, listSong)
+        adapter = ListSongsAdapter(this, listSong, selected_Set)
         songs_lstView.adapter = adapter
 
 
@@ -167,8 +213,8 @@ class SearchSongsActivity : AppCompatActivity() {
 
         }
         songs_lstView.setOnItemLongClickListener { parent, view, position, longID ->
-            Toast.makeText(this@SearchSongsActivity, "Long click on $position", Toast.LENGTH_SHORT).show()
             val id = longID.toInt()
+
             if(selected_Set.contains(id)) {
                 selected_Set.remove(id)
                 val checkbox = view.findViewById<CheckBox>(songCheckBox.id)
@@ -227,7 +273,7 @@ class SearchSongsActivity : AppCompatActivity() {
                 Toast.makeText(this@SearchSongsActivity, "Looking for $query", Toast.LENGTH_SHORT).show()
 
                 val listSongs1 = db.searchSongs(query!!)
-                val adapter = ListSongsAdapter(this@SearchSongsActivity , listSongs1)
+                val adapter = ListSongsAdapter(this@SearchSongsActivity, listSongs1, selected_Set)
                 songs_lstView.adapter = adapter
                 return false
             }
@@ -239,13 +285,17 @@ class SearchSongsActivity : AppCompatActivity() {
 //            searchItem.expandActionView()
 //            searchView.setQuery(keyword_extra, true)
             val listSongs1 = db.searchSongsByTags(keyword_extra)
-            val adapter = ListSongsAdapter(this@SearchSongsActivity , listSongs1)
+            val adapter = ListSongsAdapter(this@SearchSongsActivity, listSongs1, selected_Set)
             songs_lstView.adapter = adapter
 
         }
 
         return true
     }
+
+
+
+
 
     fun refreshAll() {
         selected_Set.clear()
@@ -255,7 +305,7 @@ class SearchSongsActivity : AppCompatActivity() {
 
 
     fun showImpossibleSongDeletion() {
-        val layout =  layoutInflater.inflate(R.layout.toast_unable_delete, findViewById(R.id.search_songs_activity) as ViewGroup)
+        val layout =  layoutInflater.inflate(R.layout.toast_unable_delete, findViewById(R.id.toast_layout_root))
 
         val toast = Toast(applicationContext)
         toast.duration = Toast.LENGTH_LONG

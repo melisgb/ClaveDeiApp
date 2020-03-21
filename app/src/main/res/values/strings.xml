@@ -66,6 +66,7 @@
     <string name="songActionsTitle">Elige una opcion</string>
     <string name="listName">List Name</string>
     <string name="listQtySongs">Qty</string>
-    <string name="unable_to_delete_this_song">Unable to delete!!. This song belongs to a List</string>
+    <string name="unable_to_delete_this_song">We are sorry, but you cannot delete this song because it belongs to a List</string>
+    <string name="choose_list_to_add_song">Choose the list to add</string>
 
 </resources>
