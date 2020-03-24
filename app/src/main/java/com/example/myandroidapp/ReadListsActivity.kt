@@ -48,7 +48,14 @@ class ReadListsActivity : AppCompatActivity() {
 
 
     }
+
+    override fun onResume() {
+        refreshAll()
+        super.onResume()
+    }
+
     fun refreshAll() {
+        adapter?.listOfSongsList = db.getSummaryLists()
         adapter?.notifyDataSetChanged()
     }
 
@@ -79,18 +86,9 @@ class ReadListsActivity : AppCompatActivity() {
                     true
                 }
                 R.id.list_option_2 -> {
-                    Toast.makeText(this@ReadListsActivity, "Option 2 EDIT", Toast.LENGTH_SHORT)
-                        .show()
-                    val intent = Intent(this, ViewListActivity::class.java)
-                    intent.putExtra(ViewListActivity.EXTRA_LIST_ID, list.id)
-                    startActivity(intent)
-                    true
-                }
-                R.id.list_option_3 -> {
-                    Toast.makeText(this@ReadListsActivity, "Option 3 DELETE", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@ReadListsActivity, "Option 2 DELETE", Toast.LENGTH_SHORT)
                         .show()
                     db.deleteList(list)
-                    adapter?.listOfSongsList = db.getSummaryLists()
                     refreshAll()
                     true
                 }

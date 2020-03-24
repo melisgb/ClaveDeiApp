@@ -16,6 +16,7 @@ import com.example.myandroidapp.Model.SongsList
 import com.example.myandroidapp.db.DatabaseHelper
 import kotlinx.android.synthetic.main.activity_search_songs.*
 import kotlinx.android.synthetic.main.list_elem_search_songs.*
+import kotlin.random.Random
 
 
 class SearchSongsActivity : AppCompatActivity() {
@@ -51,12 +52,13 @@ class SearchSongsActivity : AppCompatActivity() {
                     for(list in summaryLists) {
                         listNamesA.add(list.name)
                     }
-                    listNamesA.add("Nueva Lista")
+                    if(!listNamesA.contains("Nueva Lista")) {
+                        listNamesA.add("Nueva Lista")
+                    }
+                    else {
+                        listNamesA.add("Nueva Lista"+ Random.nextInt())
+                    }
                     val listNames = listNamesA.toArray(emptyArray<String>())
-
-
-//                    val listNames = arrayOf("Favorites", "List 2", "List 3", "List 4", "List 5", "List 6", "List 7", "List 8", "List 9", "List 10", "List 11", "List 12", "List 13", "List 14", "List 15", "List 16", "List 17")
-
 
                     var selected_ListName = ""
                     val copy_Selected_Set = HashSet<Int>(selected_Set)
@@ -73,7 +75,7 @@ class SearchSongsActivity : AppCompatActivity() {
                         val listID = db.searchSongsListByName(selected_ListName)
 
                         if(listID > 0) {
-                            //   verify before updating/adding in Favorites SongsList
+                            //   verify before updating/adding in Favoritos SongsList
                             val oldSongsList = db.getSongsList(listID)
                             for(songID in copy_Selected_Set){
                                 if(!oldSongsList.songs.containsKey(songID)){
@@ -83,7 +85,6 @@ class SearchSongsActivity : AppCompatActivity() {
                                     print("${songID} already exists")
                                     Toast.makeText(this@SearchSongsActivity, "Song ${songID} is in the List",Toast.LENGTH_SHORT).show()
                                 }
-
                             }
                             db.updateSongsList(SongsList(listID, selected_ListName, oldSongsList.songs))
                         }
@@ -97,26 +98,23 @@ class SearchSongsActivity : AppCompatActivity() {
                     builder.setNeutralButton("Cancel") { dialog, which ->
                         dialog.cancel()
                     }
-
                     val mDialog = builder.create()
                     mDialog.show()
-
-
                     mode.finish()
                     true
                 }
                 R.id.action_addToFavs -> {
-                    Toast.makeText(this@SearchSongsActivity, "Added to Favorites", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@SearchSongsActivity, "Agregado to Favoritos", Toast.LENGTH_SHORT).show()
 
                     val songsPerList = HashMap<Int, Song>()
 
                     for (songID in selected_Set) {
                         songsPerList[songID] = db.getSong(songID)!!
                     }
-                    val favSongsListID = db.searchSongsListByName("Favorites")
+                    val favSongsListID = db.searchSongsListByName("Favoritos")
 
                     if(favSongsListID > 0) {
-                        //   verify before updating/adding in Favorites SongsList
+                        //   verify before updating/adding in Favoritos SongsList
                         val oldFavsList = db.getSongsList(favSongsListID)
                         for(songID in selected_Set){
                             if(!oldFavsList.songs.containsKey(songID)){
@@ -125,22 +123,18 @@ class SearchSongsActivity : AppCompatActivity() {
                             else{
                                 print("${songID} already exists")
                             }
-
                         }
-                        db.updateSongsList(SongsList(favSongsListID, "Favorites", oldFavsList.songs))
+                        db.updateSongsList(SongsList(favSongsListID, "Favoritos", oldFavsList.songs))
                     }
                     else {
-                        db.addSongsList("Favorites", songsPerList.values.toList())
+                        db.addSongsList("Favoritos", songsPerList.values.toList())
                     }
-
                     refreshAll()
-
                     mode.finish() // Action picked, so close the CAB
                     true
                 }
                 R.id.action_deleteSong -> {
                     for(song in selected_Set){
-
                         //Functionality to check if the song can be deleted (if doesnot belong to a list)
                         try{
                             db.deleteSong(db.getSong(song)!!)
@@ -149,15 +143,12 @@ class SearchSongsActivity : AppCompatActivity() {
                             showImpossibleSongDeletion()
                             break
                         }
-
                     }
                     adapter?.listSong = db.getSongs()
                     refreshAll()
                     mode.finish() // Action picked, so close the CAB
-
                     true
                 }
-
                 else ->
                     false
             }
@@ -289,20 +280,13 @@ class SearchSongsActivity : AppCompatActivity() {
             songs_lstView.adapter = adapter
 
         }
-
         return true
     }
-
-
-
-
 
     fun refreshAll() {
         selected_Set.clear()
         adapter?.notifyDataSetChanged()
-
     }
-
 
     fun showImpossibleSongDeletion() {
         val layout =  layoutInflater.inflate(R.layout.toast_unable_delete, findViewById(R.id.toast_layout_root))
@@ -311,7 +295,6 @@ class SearchSongsActivity : AppCompatActivity() {
         toast.duration = Toast.LENGTH_LONG
         toast.view = layout
         toast.show()
-
     }
 }
 

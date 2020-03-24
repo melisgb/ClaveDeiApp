@@ -66,7 +66,8 @@
     <string name="songActionsTitle">Elige una opcion</string>
     <string name="listName">List Name</string>
     <string name="listQtySongs">Qty</string>
-    <string name="unable_to_delete_this_song">We are sorry, but you cannot delete this song because it belongs to a List</string>
-    <string name="choose_list_to_add_song">Choose the list to add</string>
+    <string name="unable_to_delete_this_song">No se pudo eliminar esta cancion porque pertenece a una Lista</string>
+    <string name="choose_list_to_add_song">Elige la lista donde guardar</string>
+    <string name="save_text">SAVE</string>
 
 </resources>
