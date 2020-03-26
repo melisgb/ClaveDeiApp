@@ -253,18 +253,16 @@ class SearchSongsActivity : AppCompatActivity() {
         searchView.maxWidth = Int.MAX_VALUE
 
         searchItem.setOnMenuItemClickListener {
-            Toast.makeText(this@SearchSongsActivity, "SearchItem clicked", Toast.LENGTH_SHORT).show()
             true
         }
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+                Toast.makeText(this@SearchSongsActivity, "Buscando $query", Toast.LENGTH_SHORT).show()
                 return false
             }
 
             override fun onQueryTextChange(query: String?): Boolean {
-                Toast.makeText(this@SearchSongsActivity, "Looking for $query", Toast.LENGTH_SHORT).show()
-
                 val listSongs1 = db.searchSongs(query!!)
                 val adapter = ListSongsAdapter(this@SearchSongsActivity, listSongs1, selected_Set)
                 songs_lstView.adapter = adapter

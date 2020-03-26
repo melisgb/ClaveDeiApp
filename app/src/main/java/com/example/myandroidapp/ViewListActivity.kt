@@ -3,6 +3,7 @@ package com.example.myandroidapp
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.Gravity
 import android.view.MotionEvent
@@ -16,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.myandroidapp.Adapter.ListOfSongsPerListAdapter
 import com.example.myandroidapp.Model.SongsList
 import com.example.myandroidapp.db.DatabaseHelper
+import com.google.android.material.internal.VisibilityAwareImageButton
 import kotlinx.android.synthetic.main.activity_view_list.*
 
 
@@ -63,10 +65,15 @@ class ViewListActivity : AppCompatActivity() {
             showSongPopUpMenu(view, listId_extra , id)
             true
         }
-        listEditButton.setOnClickListener { view ->
-            onEditImageClick(view, listId_extra)
-        }
 
+        if(listTitleTxtView.text.toString() == "Favoritos") {
+            listEditButton.visibility = View.INVISIBLE
+        }
+        else {
+            listEditButton.setOnClickListener { view ->
+                onEditImageClick(view, listId_extra)
+            }
+        }
     }
 
     fun refreshAll() {

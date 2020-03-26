@@ -23,7 +23,7 @@
     <string name="txtHint_songID">ID</string>
     <string name="txtHint_songTitle">Titulo</string>
     <string name="txtHint_songArtist">Artista</string>
-    <string name="txtHint_songLyrics">Letras</string>
+    <string name="txtHint_songLyrics">Letra</string>
     <string name="txtHint_songTags">Tags</string>
     <string name="button_addSong">AGREGAR</string>
     <string name="button_updateSong">ACTUALIZAR</string>
@@ -51,18 +51,19 @@
     <string name="button_LambGodPart">Cordero</string>
     <string name="button_CommunionPart">Comunion</string>
     <string name="button_PostCommunionPart">PostComunion</string>
-    <string name="button_ExitPart">Despedida</string>
+    <string name="button_ExitPart">Salida</string>
 
 
     <!--  Editar mi lista  -->
     <string name="edit_listName">Asigna un nombre de lista</string>
     <string name="add_toList">Agregar a lista</string>
-    <string name="readLists_title">Mis listas</string>
+    <string name="readLists_title">MIS LISTAS</string>
 <!--    -->
     <string name="add_toFavs">Agregar a Favoritos</string>
     <string name="increase_Tone">Subir tono</string>
     <string name="edit_song">Editar</string>
-    <string name="viewSongTitle">Detalle Cancion</string>
+    <string name="delete_song">Eliminar</string>
+    <string name="viewSongTitle">Titulo Cancion</string>
     <string name="songActionsTitle">Elige una opcion</string>
     <string name="listName">Nombre de Lista</string>
     <string name="listQtySongs">Qty</string>

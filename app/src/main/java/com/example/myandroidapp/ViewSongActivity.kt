@@ -155,11 +155,11 @@ class ViewSongActivity : AppCompatActivity() {
 
         if (songId_extra != 0) {
             song_id = current_Song?.id
-            songTitleTxtView.setText(current_Song?.title)
+            readSongTitleTxtView.setText(current_Song?.title)
+//            songTitleTxtView.setText(current_Song?.title)
             songArtistTxtView.setText(current_Song?.artist)
             songLyricsTxtView.setText(current_Song?.lyrics)
             songTagsTxtView.setText(current_Song?.tags)
-            readSongTitleTxtView.setText(current_Song?.title)
 
             when (actionMode) {
                 null -> {

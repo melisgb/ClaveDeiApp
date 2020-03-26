@@ -69,9 +69,9 @@ class SearchSongsByPartsActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        p10_Despedida_btn.setOnClickListener {
+        p10_Salida_btn.setOnClickListener {
             val intent = Intent(this, SearchSongsActivity::class.java)
-            intent.putExtra(SearchSongsActivity.EXTRA_KEYWORD, "Despedida")
+            intent.putExtra(SearchSongsActivity.EXTRA_KEYWORD, "Salida")
             startActivity(intent)
         }
 

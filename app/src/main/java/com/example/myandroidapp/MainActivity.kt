@@ -6,43 +6,32 @@ import android.os.Bundle
 import android.widget.Button
 import com.example.myandroidapp.db.DatabaseHelper
 
-//const val EXTRA_MESSAGE = "com.example.myandroidapp.MESSAGE"
-
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-//    fun sendMessage(view: View){
-//        val editText = findViewById<EditText>(R.id.editText)
-//        val message = editText.text.toString()
-//        val intent = Intent(this, SearchSongsBySeasonsActivity::class.java ).apply{
-//            putExtra(EXTRA_MESSAGE, message)/*adds the value of the EditText field to an intent, specifically the extra_message*/
-//        }
-//        startActivity(intent)
-//    }
         val searchAllButton = findViewById<Button>(R.id.buscarCancionesMBtn)
         searchAllButton.setOnClickListener{
             val intent = Intent(this, SearchSongsActivity::class.java)
             startActivity(intent)
         }
 
-        val byPartsButton = findViewById<Button>(R.id.verCatalogoPartesMBtn)
-            byPartsButton.setOnClickListener{
+        val searchByPartsButton = findViewById<Button>(R.id.verCatalogoPartesMBtn)
+        searchByPartsButton.setOnClickListener{
             val intent = Intent(this, SearchSongsByPartsActivity::class.java)
             startActivity(intent)
         }
 
-        val bySeasonButton = findViewById<Button>(R.id.verCatalogoTiemposMBtn)
-            bySeasonButton.setOnClickListener{
+        val searchBySeasonButton = findViewById<Button>(R.id.verCatalogoTiemposMBtn)
+        searchBySeasonButton.setOnClickListener{
                 val intent = Intent(this, SearchSongsBySeasonsActivity::class.java)
             startActivity(intent)
             }
 
-        val myListButton = findViewById<Button>(R.id.verMiListaMBtn)
-        myListButton.setOnClickListener{
+        val viewMyListsButton = findViewById<Button>(R.id.verMiListaMBtn)
+        viewMyListsButton.setOnClickListener{
             val intent = Intent(this, ReadListsActivity::class.java)
             startActivity(intent)
         }
@@ -52,11 +41,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, CreateSongActivity::class.java)
             startActivity(intent)
         }
-
-
-        var databaseHelper = DatabaseHelper(this)
-
-
 
     }
 }

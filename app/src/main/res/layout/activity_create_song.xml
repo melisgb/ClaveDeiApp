@@ -3,15 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout2"
+    android:background="#230027B3"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/ceateSongTitle_TxtView"
+        android:id="@+id/createSongTitle_TxtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="@string/createSongs_title"
+        android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -30,10 +32,11 @@
         android:hint="@string/txtHint_songTitle"
         android:inputType="textPersonName"
         android:maxLength="35"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ceateSongTitle_TxtView" />
+        app:layout_constraintTop_toBottomOf="@+id/createSongTitle_TxtView" />
 
     <EditText
         android:id="@+id/songArtist_editTxt"
@@ -41,29 +44,33 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8sp"
         android:layout_marginRight="8sp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/txtHint_songArtist"
         android:inputType="textPersonName"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/songTitle_editTxt"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/songTitle_editTxt" />
 
     <EditText
         android:id="@+id/songLyrics_editTxt"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
         android:layout_marginLeft="8sp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="8sp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/txtHint_songLyrics"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeStepGranularity="2sp"
         android:inputType="textLongMessage|textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/songArtist_editTxt"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/songArtist_editTxt" />
 
     <EditText
         android:id="@+id/songTags_editTxt"
@@ -76,6 +83,7 @@
         android:focusable="true"
         android:hint="@string/txtHint_songTags"
         android:inputType="textMultiLine"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -83,43 +91,37 @@
         app:layout_constraintTop_toBottomOf="@+id/songLyrics_editTxt"
         app:layout_constraintVertical_bias="0.05" />
 
-    <!--    <ListView-->
-<!--        android:id="@+id/listSongs_listView"-->
-<!--        android:layout_width="393dp"-->
-<!--        android:layout_height="240dp"-->
-<!--        android:choiceMode="singleChoice"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
-
-    <Button
-        android:id="@+id/deleteSong_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/button_deleteSong"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/songTags_editTxt" />
+<!--    <Button-->
+<!--        android:id="@+id/deleteSong_btn"-->
+<!--        style="@style/MainButtons"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:text="@string/button_deleteSong"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/songTags_editTxt" />-->
 
     <Button
         android:id="@+id/createSong_btn"
+        style="@style/MainButtons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="20dp"
         android:text="@string/button_addSong"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/songTags_editTxt" />
 
     <Button
         android:id="@+id/updateSong_btn"
+        style="@style/MainButtons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/button_updateSong"
-        app:layout_constraintEnd_toStartOf="@+id/deleteSong_btn"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toEndOf="@+id/createSong_btn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/songTags_editTxt" />
 
     <androidx.constraintlayout.widget.Barrier

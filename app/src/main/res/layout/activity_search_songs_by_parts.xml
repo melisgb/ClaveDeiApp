@@ -128,7 +128,7 @@
             app:layout_gravity="fill" />
 
         <Button
-            android:id="@+id/p10_Despedida_btn"
+            android:id="@+id/p10_Salida_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="9dp"

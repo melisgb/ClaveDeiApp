@@ -14,8 +14,7 @@
         <item name="android:background">#152245</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">100dp</item>
-        <item name="android:paddingRight">10dp</item>
-        <item name="android:paddingLeft">10dp</item>
+        <item name="android:padding">20dp</item>
     </style>
 
 </resources>

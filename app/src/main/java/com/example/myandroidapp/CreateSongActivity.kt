@@ -6,6 +6,7 @@ import android.view.MotionEvent
 import android.content.Context
 import android.content.Intent
 import android.view.Gravity
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.example.myandroidapp.Model.Song
@@ -41,9 +42,12 @@ class CreateSongActivity : AppCompatActivity() {
             songLyrics_editTxt.setText(current_Song?.lyrics)
             songTags_editTxt.setText(current_Song?.tags)
             createSong_btn.isEnabled = false
+            createSong_btn.visibility = View.INVISIBLE
+            createSongTitle_TxtView.text = "MODIFICAR CANCION"
         }
         else{
             updateSong_btn.isEnabled = false
+            updateSong_btn.visibility = View.INVISIBLE
         }
     }
 
@@ -98,39 +102,39 @@ class CreateSongActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        deleteSong_btn.setOnClickListener {
-            val song = Song(
-                song_id!!,
-                songTitle_editTxt.text.toString(),
-                songArtist_editTxt.text.toString(),
-                songLyrics_editTxt.text.toString(),
-                songTags_editTxt.text.toString()
-            )
-
-            var songDeleted = true
-            try{
-                db.deleteSong(song)
-            }
-            catch(e: IllegalStateException){
-//                showImpossibleSongDeletion()
-                songDeleted = false
-                val myToast = Toast.makeText(this, R.string.unable_to_delete_this_song,  Toast.LENGTH_LONG)
-                myToast.setGravity(Gravity.BOTTOM,0,50)
-                myToast.show()
-            }
-            finally {
-                if(songDeleted) {
-                    val myToast = Toast.makeText(this, R.string.toast_song_deleted,  Toast.LENGTH_SHORT)
-                    myToast.setGravity(Gravity.BOTTOM, 0, 50)
-                    myToast.show()
-                }
-            }
-
-            val intent = Intent(this, SearchSongsActivity::class.java)
-            startActivity(intent)
-
-
-        }
+//        deleteSong_btn.setOnClickListener {
+//            val song = Song(
+//                song_id!!,
+//                songTitle_editTxt.text.toString(),
+//                songArtist_editTxt.text.toString(),
+//                songLyrics_editTxt.text.toString(),
+//                songTags_editTxt.text.toString()
+//            )
+//
+//            var songDeleted = true
+//            try{
+//                db.deleteSong(song)
+//            }
+//            catch(e: IllegalStateException){
+////                showImpossibleSongDeletion()
+//                songDeleted = false
+//                val myToast = Toast.makeText(this, R.string.unable_to_delete_this_song,  Toast.LENGTH_LONG)
+//                myToast.setGravity(Gravity.BOTTOM,0,50)
+//                myToast.show()
+//            }
+//            finally {
+//                if(songDeleted) {
+//                    val myToast = Toast.makeText(this, R.string.toast_song_deleted,  Toast.LENGTH_SHORT)
+//                    myToast.setGravity(Gravity.BOTTOM, 0, 50)
+//                    myToast.show()
+//                }
+//            }
+//
+//            val intent = Intent(this, SearchSongsActivity::class.java)
+//            startActivity(intent)
+//
+//
+//        }
     }
 
 
