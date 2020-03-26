@@ -45,16 +45,16 @@ class ViewListActivity : AppCompatActivity() {
         db = DatabaseHelper(this)
         val listId_extra = this.intent.getIntExtra(EXTRA_LIST_ID, 0)
         val current_SongsList: SongsList = db.getSongsList(listId_extra)
-
         listTitleTxtView.text = current_SongsList.name
 
-        adapter = ListOfSongsPerListAdapter(this, current_SongsList.songs.values.toList())
+        val listOfSongs = current_SongsList.songs.values.toList().sortedBy { t -> t.title }
+        adapter = ListOfSongsPerListAdapter(this, listOfSongs)
         songsFromListLstView.adapter = adapter
 
         songsFromListLstView.setOnItemClickListener { parent, view, position, longID ->
             val id = longID.toInt()
-            val intent = Intent(this, CreateSongActivity::class.java)
-            intent.putExtra(CreateSongActivity.EXTRA_SONG_ID, id)
+            val intent = Intent(this, ViewSongActivity::class.java)
+            intent.putExtra(ViewSongActivity.EXTRA_SONG_ID, id)
             startActivity(intent)
         }
 

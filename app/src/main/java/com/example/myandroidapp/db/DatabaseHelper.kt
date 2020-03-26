@@ -144,7 +144,7 @@ class DatabaseHelper(context: Context) :
             arrayOf("%$keyword%", "%$keyword%", "%$keyword%", "%$keyword%"),
             null,
             null,
-            null,
+            "title",
             null
         )
 

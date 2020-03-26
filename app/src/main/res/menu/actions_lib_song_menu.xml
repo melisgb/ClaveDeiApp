@@ -17,12 +17,6 @@
         app:showAsAction="always"
         android:iconTint="@color/white"
         android:icon="@drawable/add_favs_icon"/>
-<!--    <item-->
-<!--        android:id="@+id/action_editSong"-->
-<!--        android:title="@string/edit_song"-->
-<!--        app:showAsAction="always"-->
-<!--        android:iconTint="@color/white"-->
-<!--        android:icon="@drawable/edit_song_icon"/>-->
     <item
         android:id="@+id/action_deleteSong"
         android:title="@string/button_deleteSong"

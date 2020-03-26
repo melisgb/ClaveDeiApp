@@ -7,7 +7,7 @@
     <string name="button_searchSongsbyParts">Ver Catalogo por Partes</string>
     <string name="button_searchSongsbySeasons">Ver Catalogo por Tiempos</string>
     <string name="button_createSong">Agregar Cancion</string>
-    <string name="button_goList">Ver mi lista</string>
+    <string name="button_goList">Ver mis listas</string>
 
     <!--  Toast messages  -->
     <string name="toast_song_updated">Cancion Actualizada!</string>
@@ -21,13 +21,13 @@
     <!--  Editar canciones   -->
     <string name="createSongs_title">REGISTRO DE CANCION</string>
     <string name="txtHint_songID">ID</string>
-    <string name="txtHint_songTitle">Title</string>
-    <string name="txtHint_songArtist">Artist</string>
-    <string name="txtHint_songLyrics">Lyrics</string>
+    <string name="txtHint_songTitle">Titulo</string>
+    <string name="txtHint_songArtist">Artista</string>
+    <string name="txtHint_songLyrics">Letras</string>
     <string name="txtHint_songTags">Tags</string>
-    <string name="button_addSong">ADD</string>
-    <string name="button_updateSong">UPDATE</string>
-    <string name="button_deleteSong">DELETE</string>
+    <string name="button_addSong">AGREGAR</string>
+    <string name="button_updateSong">ACTUALIZAR</string>
+    <string name="button_deleteSong">ELIMINAR</string>
 
 
     <!--    Buscar canciones por Tiempos / bySeasons -->
@@ -56,18 +56,19 @@
 
     <!--  Editar mi lista  -->
     <string name="edit_listName">Asigna un nombre de lista</string>
-    <string name="add_toList">Anadir a lista</string>
+    <string name="add_toList">Agregar a lista</string>
     <string name="readLists_title">Mis listas</string>
 <!--    -->
-    <string name="add_toFavs">Anadir a Favoritos</string>
+    <string name="add_toFavs">Agregar a Favoritos</string>
     <string name="increase_Tone">Subir tono</string>
-    <string name="edit_song">Edit</string>
-    <string name="viewSongTitle">VIEW SONG</string>
+    <string name="edit_song">Editar</string>
+    <string name="viewSongTitle">Detalle Cancion</string>
     <string name="songActionsTitle">Elige una opcion</string>
-    <string name="listName">List Name</string>
+    <string name="listName">Nombre de Lista</string>
     <string name="listQtySongs">Qty</string>
     <string name="unable_to_delete_this_song">No se pudo eliminar esta cancion porque pertenece a una Lista</string>
     <string name="choose_list_to_add_song">Elige la lista donde guardar</string>
-    <string name="save_text">SAVE</string>
+    <string name="save_text">GUARDAR</string>
+    <string name="SongIcon">songIcon</string>
 
 </resources>

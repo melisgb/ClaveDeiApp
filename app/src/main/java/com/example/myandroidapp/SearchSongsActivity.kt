@@ -16,6 +16,8 @@ import com.example.myandroidapp.Model.SongsList
 import com.example.myandroidapp.db.DatabaseHelper
 import kotlinx.android.synthetic.main.activity_search_songs.*
 import kotlinx.android.synthetic.main.list_elem_search_songs.*
+import java.lang.Math.abs
+import kotlin.math.absoluteValue
 import kotlin.random.Random
 
 
@@ -33,7 +35,7 @@ class SearchSongsActivity : AppCompatActivity() {
         override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
             // Inflate a menu resource providing context menu items
             val inflater: MenuInflater = mode.menuInflater
-            inflater.inflate(R.menu.actions_song_menu, menu)
+            inflater.inflate(R.menu.actions_lib_song_menu, menu)
             mode.title = "Elige una opcion"
             return true
         }
@@ -56,7 +58,7 @@ class SearchSongsActivity : AppCompatActivity() {
                         listNamesA.add("Nueva Lista")
                     }
                     else {
-                        listNamesA.add("Nueva Lista"+ Random.nextInt())
+                        listNamesA.add("Nueva Lista-"+ abs(Random.nextInt()))
                     }
                     val listNames = listNamesA.toArray(emptyArray<String>())
 
@@ -180,8 +182,8 @@ class SearchSongsActivity : AppCompatActivity() {
         songs_lstView.setOnItemClickListener { parent, view, position, longID ->
             val id = longID.toInt()
             if(selected_Set.isEmpty()) {
-                val intent = Intent(this, CreateSongActivity::class.java)
-                intent.putExtra(CreateSongActivity.EXTRA_SONG_ID, id)
+                val intent = Intent(this, ViewSongActivity::class.java)
+                intent.putExtra(ViewSongActivity.EXTRA_SONG_ID, id)
                 startActivity(intent)
             }
             else if(selected_Set.contains(id)){
@@ -238,7 +240,7 @@ class SearchSongsActivity : AppCompatActivity() {
 
     }
 
-    // implementation of the searchBar
+    // SEARCH_BAR IMPLEMENTATION
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.options_menu, menu)

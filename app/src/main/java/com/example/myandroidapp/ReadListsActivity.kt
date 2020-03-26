@@ -27,6 +27,7 @@ class ReadListsActivity : AppCompatActivity() {
         db = DatabaseHelper(this)
 
         val songsLists = db.getSummaryLists()
+        songsLists.sortedBy { t -> t.name }
         adapter = ListsOfSongsListAdapter(this, songsLists)
         myListsListView.adapter = adapter
 

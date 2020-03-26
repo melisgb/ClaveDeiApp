@@ -29,6 +29,7 @@
         android:ems="10"
         android:hint="@string/txtHint_songTitle"
         android:inputType="textPersonName"
+        android:maxLength="35"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

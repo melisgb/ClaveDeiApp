@@ -19,7 +19,7 @@ class SongsActionMode  : ActionMode.Callback {
     override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
         // Inflate a menu resource providing context menu items
         val inflater: MenuInflater = mode.menuInflater
-        inflater.inflate(R.menu.actions_song_menu, menu)
+        inflater.inflate(R.menu.actions_lib_song_menu, menu)
         return true
     }
     // Called each time the action mode is shown. Always called after onCreateActionMode, but

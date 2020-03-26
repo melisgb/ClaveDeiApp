@@ -3,6 +3,8 @@
 *.aar
 *.ap_
 *.aab
+*.project
+*.classpath
 
 # Files for the ART/Dalvik VM
 *.dex
@@ -86,3 +88,5 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 .DS_Store
+.settings/org.eclipse.buildship.core.prefs
+app/.settings/org.eclipse.buildship.core.prefs

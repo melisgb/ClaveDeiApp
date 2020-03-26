@@ -21,10 +21,8 @@ class ListOfSongsPerListAdapter(internal var activity: Activity,
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val songView: View = inflater.inflate(R.layout.list_elem_view_songs_list, null)
-
         songView.songTitleOnListTxtView.text = listOfSongsPerList[position].title
-//        songView.songCkBoxOnListCheckBox
-//        songView.songImgOnListImageView
+
 
         return songView
     }

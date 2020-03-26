@@ -23,9 +23,7 @@ class ListsOfSongsListAdapter(internal var activity: Activity,
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val songListView: View = inflater.inflate(R.layout.list_elem_read_lists, null)
-
         songListView.listNameTxtView.text = listOfSongsList[position].name
-//        songListView.listQtySongsTxtView.text = listOfSongsList[position].songs.size
 
         return songListView
 

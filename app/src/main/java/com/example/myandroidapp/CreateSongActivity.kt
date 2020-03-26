@@ -93,7 +93,8 @@ class CreateSongActivity : AppCompatActivity() {
             myToast.setGravity(Gravity.BOTTOM, 0, 50)
             myToast.show()
 
-            val intent = Intent(this, SearchSongsActivity::class.java)
+            val intent = Intent(this, ViewSongActivity::class.java)
+            intent.putExtra(ViewSongActivity.EXTRA_SONG_ID, song_id!!)
             startActivity(intent)
         }
 

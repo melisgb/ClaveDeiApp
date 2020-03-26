@@ -8,6 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Name"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
         android:maxLength="35"
         android:inputType="textPersonName"
         android:textSize="18sp" />
