@@ -8,8 +8,10 @@
     android:background="#230027B3"
     tools:context=".ViewSongActivity">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout2"
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

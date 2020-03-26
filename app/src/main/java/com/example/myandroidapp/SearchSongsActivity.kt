@@ -178,7 +178,6 @@ class SearchSongsActivity : AppCompatActivity() {
         adapter = ListSongsAdapter(this, listSong, selected_Set)
         songs_lstView.adapter = adapter
 
-
         songs_lstView.setOnItemClickListener { parent, view, position, longID ->
             val id = longID.toInt()
             if(selected_Set.isEmpty()) {

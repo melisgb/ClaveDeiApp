@@ -61,13 +61,14 @@
         android:layout_marginLeft="8sp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="8sp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeStepGranularity="2sp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/txtHint_songLyrics"
-        android:autoSizeMinTextSize="12sp"
-        android:autoSizeMaxTextSize="100sp"
-        android:autoSizeStepGranularity="2sp"
         android:inputType="textLongMessage|textMultiLine"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/songArtist_editTxt" />
@@ -107,9 +108,9 @@
         style="@style/MainButtons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="@string/button_addSong"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/songTags_editTxt" />
 
@@ -119,9 +120,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
         android:text="@string/button_updateSong"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/songTags_editTxt" />
 
     <androidx.constraintlayout.widget.Barrier

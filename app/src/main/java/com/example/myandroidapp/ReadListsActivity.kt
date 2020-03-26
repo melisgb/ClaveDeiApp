@@ -67,7 +67,7 @@ class ReadListsActivity : AppCompatActivity() {
         popup.setOnMenuItemClickListener { item ->
              when (item?.itemId) {
                 R.id.list_option_1 -> {
-                    Toast.makeText(this@ReadListsActivity, "Sharing list", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@ReadListsActivity, "Compartiendo lista", Toast.LENGTH_SHORT)
                         .show()
 //                    implement the share function
                     val sharingIntent = Intent(Intent.ACTION_SEND)
@@ -87,7 +87,7 @@ class ReadListsActivity : AppCompatActivity() {
                     true
                 }
                 R.id.list_option_2 -> {
-                    Toast.makeText(this@ReadListsActivity, "List deleted", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@ReadListsActivity, "Lista eliminada", Toast.LENGTH_SHORT)
                         .show()
                     db.deleteList(list)
                     refreshAll()

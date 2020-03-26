@@ -13,7 +13,7 @@
         <item name="android:textSize">18sp</item>
         <item name="android:background">#152245</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">20dp</item>
     </style>
 
