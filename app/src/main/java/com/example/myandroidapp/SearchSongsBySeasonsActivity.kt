@@ -14,6 +14,7 @@ class SearchSongsBySeasonsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_songs_by_season)
+        title = "BUSCAR POR TIEMPOS"
 
         db = DatabaseHelper(this)
 

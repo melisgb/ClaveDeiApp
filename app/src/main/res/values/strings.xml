@@ -68,8 +68,9 @@
     <string name="listName">Nombre de Lista</string>
     <string name="listQtySongs">Cant.</string>
     <string name="unable_to_delete_this_song">No se pudo eliminar esta cancion porque pertenece a una Lista</string>
-    <string name="choose_list_to_add_song">Elige la lista donde guardar</string>
+    <string name="choose_list_to_add_song">Elige la lista donde deseas guardar</string>
     <string name="save_text">GUARDAR</string>
     <string name="SongIcon">Icono de cancion</string>
+    <string name="songAddedToList">"Agregada a la Lista "</string>
 
 </resources>

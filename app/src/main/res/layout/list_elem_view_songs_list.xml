@@ -21,7 +21,7 @@
         android:contentDescription="@string/SongIcon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/musica" />
+        app:srcCompat="@drawable/song_icon" />
 
     <TextView
         android:id="@+id/songTitleOnListTxtView"

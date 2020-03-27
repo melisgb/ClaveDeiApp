@@ -12,6 +12,7 @@ class SearchSongsByPartsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_songs_by_parts)
+        title = "BUSCAR POR MOMENTOS"
 
         db = DatabaseHelper(this)
 

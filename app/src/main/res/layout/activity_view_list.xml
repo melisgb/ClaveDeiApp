@@ -23,26 +23,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
+            android:layout_marginStart="10dp"
             android:gravity="center"
             android:text="@string/listName"
             android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textStyle="bold" />
 
         <ImageButton
             android:id="@+id/listEditButton"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:layout_marginRight="10dp"
-            android:backgroundTint="@color/white"
-            android:cropToPadding="false"
-            android:paddingLeft="25dp"
+            android:backgroundTint="#FAFAFA"
+            android:paddingLeft="15dp"
+            android:tint="@color/black"
             app:layout_constraintStart_toEndOf="@+id/listTitleTxtView"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/edit_icon" />
+            app:srcCompat="@drawable/edit_list_icon_36" />
 
     </LinearLayout>
 

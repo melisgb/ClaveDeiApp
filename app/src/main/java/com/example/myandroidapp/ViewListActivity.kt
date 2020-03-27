@@ -126,10 +126,10 @@ class ViewListActivity : AppCompatActivity() {
         newListNameEditTxt.setText(db.getSongsList(songListID).name)
         newListName = newListNameEditTxt.text.toString()
 
-        builder.setNegativeButton("Cancel") { dialog, which ->
+        builder.setNegativeButton("Cancelar") { dialog, which ->
             dialog.cancel()
         }
-        builder.setPositiveButton("Save") { dialog, which ->
+        builder.setPositiveButton("Guardar") { dialog, which ->
 
             newListName = newListNameEditTxt.text.toString()
             var currentSongsList = db.getSongsList(songListID)

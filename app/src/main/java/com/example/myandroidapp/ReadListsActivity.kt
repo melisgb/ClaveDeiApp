@@ -66,7 +66,7 @@ class ReadListsActivity : AppCompatActivity() {
         val popup = PopupMenu(this, v, Gravity.RIGHT )
         popup.setOnMenuItemClickListener { item ->
              when (item?.itemId) {
-                R.id.list_option_1 -> {
+                R.id.list_share_option -> {
                     Toast.makeText(this@ReadListsActivity, "Compartiendo lista", Toast.LENGTH_SHORT)
                         .show()
 //                    implement the share function
@@ -86,7 +86,7 @@ class ReadListsActivity : AppCompatActivity() {
 
                     true
                 }
-                R.id.list_option_2 -> {
+                R.id.list_delete_option -> {
                     Toast.makeText(this@ReadListsActivity, "Lista eliminada", Toast.LENGTH_SHORT)
                         .show()
                     db.deleteList(list)

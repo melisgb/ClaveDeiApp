@@ -1,18 +1,19 @@
 package com.example.myandroidapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.ActionMode
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.example.myandroidapp.Model.Song
 import com.example.myandroidapp.Model.SongsList
 import com.example.myandroidapp.db.DatabaseHelper
 import kotlinx.android.synthetic.main.activity_view_song.*
-import androidx.appcompat.app.AlertDialog
+
 
 class ViewSongActivity : AppCompatActivity() {
 
@@ -27,19 +28,22 @@ class ViewSongActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_song)
-        title = "SONG"
+        title = "CANCION"
 
         db = DatabaseHelper(this)
         val songId_extra = this.intent.getIntExtra(EXTRA_SONG_ID, 0)
         val current_Song: Song? = db.getSong(songId_extra)
-
+        songLyricsTxtView.setMovementMethod(ScrollingMovementMethod())
         if (songId_extra != 0) {
             song_id = current_Song?.id
             readSongTitleTxtView.setText(current_Song?.title)
 //            songTitleTxtView.setText(current_Song?.title)
             songArtistTxtView.setText(current_Song?.artist)
             songLyricsTxtView.setText(current_Song?.lyrics)
-            songTagsTxtView.setText(current_Song?.tags)
+            if(current_Song?.tags != ""){
+                songTagsTxtView.setText("Tags: "+ current_Song?.tags)
+            }
+            else songTagsTxtView.setText(current_Song?.tags)
         }
     }
 
@@ -72,7 +76,7 @@ class ViewSongActivity : AppCompatActivity() {
 //                        listNamesA.add("Nueva Lista"+ Random.nextInt())
 //                    }
                 val listNames = listNamesA.toArray(emptyArray<String>())
-//
+
                 var selected_ListName = ""
                 val builder = AlertDialog.Builder(this@ViewSongActivity)
                 builder.setTitle(R.string.choose_list_to_add_song)
@@ -91,6 +95,7 @@ class ViewSongActivity : AppCompatActivity() {
                         }
                         else{
                             print("${song_id} already exists")
+                            Toast.makeText(this@ViewSongActivity, "Cancion está en lista", Toast.LENGTH_SHORT).show()
                         }
                         db.updateSongsList(SongsList(listID, selected_ListName, oldSongsList.songs))
                     }
@@ -122,6 +127,7 @@ class ViewSongActivity : AppCompatActivity() {
                    }
                    else{
                        print("${song_id} already exists")
+                       Toast.makeText(this@ViewSongActivity, "Cancion está en lista", Toast.LENGTH_SHORT).show()
                    }
                     db.updateSongsList(SongsList(favSongsListID, "Favoritos", oldFavsList.songs))
                 }
@@ -130,8 +136,6 @@ class ViewSongActivity : AppCompatActivity() {
                     songsPerList[song_id!!] = db.getSong(song_id!!)!!
                     db.addSongsList("Favoritos", songsPerList.values.toList())
                 }
-//                    refreshAll()
-                finish() // Action picked, so close the CAB
                 true
             }
             R.id.action_editSong -> {
@@ -150,7 +154,7 @@ class ViewSongActivity : AppCompatActivity() {
                 }
                 val intent = Intent(this@ViewSongActivity, SearchSongsActivity::class.java)
                 startActivity(intent)
-                finish() // Action picked, so close the CAB
+                finish()
                 true
             }
             else -> false

@@ -48,7 +48,7 @@ class SearchSongsActivity : AppCompatActivity() {
         override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
             return when (item.itemId) {
                 R.id.action_addToList -> {
-                    Toast.makeText(this@SearchSongsActivity, "Add to list", Toast.LENGTH_SHORT).show()
+
                     val summaryLists = db.getSummaryLists()
                     var listNamesA = ArrayList<String>()
                     for(list in summaryLists) {
@@ -66,7 +66,7 @@ class SearchSongsActivity : AppCompatActivity() {
                     val copy_Selected_Set = HashSet<Int>(selected_Set)
                     val builder = AlertDialog.Builder(this@SearchSongsActivity)
                     builder.setTitle(R.string.choose_list_to_add_song)
-                    builder.setIcon(R.drawable.add_list_icon)
+                    builder.setIcon(R.drawable.songlist)
                     builder.setSingleChoiceItems(listNames, -1)  { dialogInterface, i ->
                         selected_ListName = listNames[i]
 
@@ -85,19 +85,22 @@ class SearchSongsActivity : AppCompatActivity() {
                                 }
                                 else{
                                     print("${songID} already exists")
-                                    Toast.makeText(this@SearchSongsActivity, "Song ${songID} is in the List",Toast.LENGTH_SHORT).show()
+                                    val songTitle = db.getSong(songID)!!.title
+                                    Toast.makeText(this@SearchSongsActivity, "'${songTitle}' ya esta en la Lista",Toast.LENGTH_SHORT).show()
                                 }
                             }
                             db.updateSongsList(SongsList(listID, selected_ListName, oldSongsList.songs))
+                            Toast.makeText(this@SearchSongsActivity, "Agregado a lista $selected_ListName", Toast.LENGTH_SHORT).show()
                         }
                         else {
                             db.addSongsList(selected_ListName, myListSongs.values.toList())
+                            Toast.makeText(this@SearchSongsActivity, "Agregado a lista $selected_ListName", Toast.LENGTH_SHORT).show()
                         }
                         refreshAll()
                         dialogInterface.dismiss()
                     }
 
-                    builder.setNeutralButton("Cancel") { dialog, which ->
+                    builder.setNeutralButton("Cancelar") { dialog, which ->
                         dialog.cancel()
                     }
                     val mDialog = builder.create()
@@ -106,7 +109,7 @@ class SearchSongsActivity : AppCompatActivity() {
                     true
                 }
                 R.id.action_addToFavs -> {
-                    Toast.makeText(this@SearchSongsActivity, "Agregado to Favoritos", Toast.LENGTH_SHORT).show()
+
 
                     val songsPerList = HashMap<Int, Song>()
 
@@ -124,12 +127,16 @@ class SearchSongsActivity : AppCompatActivity() {
                             }
                             else{
                                 print("${songID} already exists")
+                                val songTitle = db.getSong(songID)!!.title
+                                Toast.makeText(this@SearchSongsActivity, "'${songTitle}' ya esta en Favoritos",Toast.LENGTH_SHORT).show()
                             }
                         }
                         db.updateSongsList(SongsList(favSongsListID, "Favoritos", oldFavsList.songs))
+                        Toast.makeText(this@SearchSongsActivity, "Agregado a Favoritos", Toast.LENGTH_SHORT).show()
                     }
                     else {
                         db.addSongsList("Favoritos", songsPerList.values.toList())
+                        Toast.makeText(this@SearchSongsActivity, "Agregado a Favoritos", Toast.LENGTH_SHORT).show()
                     }
                     refreshAll()
                     mode.finish() // Action picked, so close the CAB
@@ -170,9 +177,9 @@ class SearchSongsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_songs)
+        title = "LISTADO DE CANCIONES"
 
         db = DatabaseHelper(this)
-//        searchSpecificSongs()
 
         val listSong = db.getSongs()
         adapter = ListSongsAdapter(this, listSong, selected_Set)
