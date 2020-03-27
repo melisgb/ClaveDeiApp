@@ -95,14 +95,15 @@ class ViewSongActivity : AppCompatActivity() {
                         }
                         else{
                             print("${song_id} already exists")
-                            Toast.makeText(this@ViewSongActivity, "Cancion está en lista", Toast.LENGTH_SHORT).show()
                         }
                         db.updateSongsList(SongsList(listID, selected_ListName, oldSongsList.songs))
+                        Toast.makeText(this@ViewSongActivity, "Cancion agregada a '${selected_ListName}'", Toast.LENGTH_SHORT).show()
                     }
                     else {
                         val songsPerList = HashMap<Int, Song>()
                         songsPerList[song_id!!] = db.getSong(song_id!!)!!
                         db.addSongsList(selected_ListName, myListSongs.values.toList())
+                        Toast.makeText(this@ViewSongActivity, "Cancion agregada a '${selected_ListName}'", Toast.LENGTH_SHORT).show()
                     }
 
 //                        refreshAll()
@@ -127,14 +128,15 @@ class ViewSongActivity : AppCompatActivity() {
                    }
                    else{
                        print("${song_id} already exists")
-                       Toast.makeText(this@ViewSongActivity, "Cancion está en lista", Toast.LENGTH_SHORT).show()
                    }
                     db.updateSongsList(SongsList(favSongsListID, "Favoritos", oldFavsList.songs))
+                    Toast.makeText(this@ViewSongActivity, "Cancion agregada a 'Favoritos'", Toast.LENGTH_SHORT).show()
                 }
                 else {
                     val songsPerList = HashMap<Int, Song>()
                     songsPerList[song_id!!] = db.getSong(song_id!!)!!
                     db.addSongsList("Favoritos", songsPerList.values.toList())
+                    Toast.makeText(this@ViewSongActivity, "Cancion agregada a 'Favoritos'", Toast.LENGTH_SHORT).show()
                 }
                 true
             }

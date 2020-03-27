@@ -85,16 +85,14 @@ class SearchSongsActivity : AppCompatActivity() {
                                 }
                                 else{
                                     print("${songID} already exists")
-                                    val songTitle = db.getSong(songID)!!.title
-                                    Toast.makeText(this@SearchSongsActivity, "'${songTitle}' ya esta en la Lista",Toast.LENGTH_SHORT).show()
                                 }
                             }
                             db.updateSongsList(SongsList(listID, selected_ListName, oldSongsList.songs))
-                            Toast.makeText(this@SearchSongsActivity, "Agregado a lista $selected_ListName", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@SearchSongsActivity, "Canciones agregadas a '${selected_ListName}'", Toast.LENGTH_SHORT).show()
                         }
                         else {
                             db.addSongsList(selected_ListName, myListSongs.values.toList())
-                            Toast.makeText(this@SearchSongsActivity, "Agregado a lista $selected_ListName", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@SearchSongsActivity, "Canciones agregadas a '${selected_ListName}'", Toast.LENGTH_SHORT).show()
                         }
                         refreshAll()
                         dialogInterface.dismiss()
@@ -127,16 +125,14 @@ class SearchSongsActivity : AppCompatActivity() {
                             }
                             else{
                                 print("${songID} already exists")
-                                val songTitle = db.getSong(songID)!!.title
-                                Toast.makeText(this@SearchSongsActivity, "'${songTitle}' ya esta en Favoritos",Toast.LENGTH_SHORT).show()
                             }
                         }
                         db.updateSongsList(SongsList(favSongsListID, "Favoritos", oldFavsList.songs))
-                        Toast.makeText(this@SearchSongsActivity, "Agregado a Favoritos", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@SearchSongsActivity, "Canciones agregadas a 'Favoritos'", Toast.LENGTH_SHORT).show()
                     }
                     else {
                         db.addSongsList("Favoritos", songsPerList.values.toList())
-                        Toast.makeText(this@SearchSongsActivity, "Agregado a Favoritos", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@SearchSongsActivity, "Canciones agregadas a 'Favoritos'", Toast.LENGTH_SHORT).show()
                     }
                     refreshAll()
                     mode.finish() // Action picked, so close the CAB
