@@ -69,7 +69,7 @@
         android:ems="10"
         android:hint="@string/txtHint_songLyrics"
         android:inputType="textLongMessage|textMultiLine"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/songArtist_editTxt" />
@@ -92,17 +92,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/songLyrics_editTxt"
         app:layout_constraintVertical_bias="0.05" />
-
-<!--    <Button-->
-<!--        android:id="@+id/deleteSong_btn"-->
-<!--        style="@style/MainButtons"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:layout_marginEnd="16dp"-->
-<!--        android:text="@string/button_deleteSong"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/songTags_editTxt" />-->
 
     <Button
         android:id="@+id/createSong_btn"
