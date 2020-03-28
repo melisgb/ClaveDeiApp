@@ -14,6 +14,7 @@ import com.example.myandroidapp.Adapter.ListSongsAdapter
 import com.example.myandroidapp.Model.Song
 import com.example.myandroidapp.Model.SongsList
 import com.example.myandroidapp.db.DatabaseHelper
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_search_songs.*
 import kotlinx.android.synthetic.main.list_elem_search_songs.*
 import java.lang.Math.abs
@@ -237,6 +238,12 @@ class SearchSongsActivity : AppCompatActivity() {
 
             }
             true
+        }
+
+        val floatingActBtn = findViewById<FloatingActionButton>(R.id.createSongFloatingActBtn)
+        floatingActBtn.setOnClickListener{
+            val intent = Intent(this, CreateSongActivity::class.java)
+            startActivity(intent)
         }
 
     }

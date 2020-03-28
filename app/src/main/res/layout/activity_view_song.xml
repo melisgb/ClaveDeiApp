@@ -12,7 +12,7 @@
         android:id="@+id/youtubeIconBtn"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:backgroundTint="#110027B3"
+        android:backgroundTint="#FAFAFA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/youtube_icon" />

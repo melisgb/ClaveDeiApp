@@ -7,6 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".SearchSongsActivity">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/createSongFloatingActBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:scaleType="center"
+        android:backgroundTint="@color/colorAccent"
+        android:clickable="true"
+        android:foregroundGravity="center"
+        android:src="@drawable/new_song_icon_50"
+        app:fabSize="normal"
+        app:maxImageSize = "36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
     <ListView
         android:id="@+id/songs_lstView"
         android:layout_width="0dp"
@@ -17,7 +31,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+
+
+    </ListView>
 
 
     <!--    <androidx.constraintlayout.widget.Barrier-->

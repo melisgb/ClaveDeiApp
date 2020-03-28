@@ -36,11 +36,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val createSongButton = findViewById<Button>(R.id.ingresarCancionMBtn)
-        createSongButton.setOnClickListener {
-            val intent = Intent(this, CreateSongActivity::class.java)
-            startActivity(intent)
-        }
 
     }
 }

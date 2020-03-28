@@ -85,19 +85,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/verCatalogoTiemposMBtn" />
 
-    <Button
-        android:id="@+id/ingresarCancionMBtn"
-        style="@style/MainButtons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:gravity="center"
-        android:text="@string/button_createSong"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/verMiListaMBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

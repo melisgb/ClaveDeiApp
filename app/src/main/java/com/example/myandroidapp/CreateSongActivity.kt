@@ -63,23 +63,28 @@ class CreateSongActivity : AppCompatActivity() {
 
         //Event to add a song to a list
         createSong_btn.setOnClickListener {
-            val song = Song(
-                -1,
-                songTitle_editTxt.text.toString(),
-                songArtist_editTxt.text.toString(),
-                songLyrics_editTxt.text.toString(),
-                songTags_editTxt.text.toString()
-            )
-            db.addSong(song)
+            if(songTitle_editTxt.text.toString() != "" && songLyrics_editTxt.text.toString() != ""){
+                val song = Song(
+                    -1,
+                    songTitle_editTxt.text.toString(),
+                    songArtist_editTxt.text.toString(),
+                    songLyrics_editTxt.text.toString(),
+                    songTags_editTxt.text.toString()
+                )
+                db.addSong(song)
 
 
-            val myToast = Toast.makeText(applicationContext, R.string.toast_song_created, Toast.LENGTH_SHORT)
-            myToast.setGravity(Gravity.BOTTOM, 0, 50)
-            myToast.show()
+                val myToast = Toast.makeText(applicationContext, R.string.toast_song_created, Toast.LENGTH_SHORT)
+                myToast.setGravity(Gravity.BOTTOM, 0, 50)
+                myToast.show()
 
-            val intent = Intent(this, SearchSongsActivity::class.java)
-            startActivity(intent)
-            finish()
+                val intent = Intent(this, SearchSongsActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            else {
+                val myToast = Toast.makeText(applicationContext, "Campos Titulo y letras requeridos", Toast.LENGTH_SHORT)
+            }
 
         }
 
