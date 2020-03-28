@@ -1,11 +1,13 @@
 package com.example.myandroidapp
 
+import android.app.SearchManager
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -36,7 +38,7 @@ class ViewSongActivity : AppCompatActivity() {
         songLyricsTxtView.setMovementMethod(ScrollingMovementMethod())
         if (songId_extra != 0) {
             song_id = current_Song?.id
-            readSongTitleTxtView.setText(current_Song?.title)
+            songTitleTxtView.setText(current_Song?.title)
 //            songTitleTxtView.setText(current_Song?.title)
             songArtistTxtView.setText(current_Song?.artist)
             songLyricsTxtView.setText(current_Song?.lyrics)
@@ -45,6 +47,19 @@ class ViewSongActivity : AppCompatActivity() {
             }
             else songTagsTxtView.setText(current_Song?.tags)
         }
+
+        val youtubeButton = findViewById<ImageButton>(R.id.youtubeIconBtn)
+        youtubeButton.setOnClickListener {
+            val intent = Intent(Intent.ACTION_WEB_SEARCH).apply {
+                val songTitle = songTitleTxtView.text
+                val songArtist = songArtistTxtView.text
+                putExtra(SearchManager.QUERY, "$songTitle $songArtist Youtube")
+            }
+            if (intent.resolveActivity(packageManager) != null) {
+                startActivity(intent)
+            }
+        }
+
     }
 
     fun showImpossibleSongDeletion() {
@@ -80,7 +95,7 @@ class ViewSongActivity : AppCompatActivity() {
                 var selected_ListName = ""
                 val builder = AlertDialog.Builder(this@ViewSongActivity)
                 builder.setTitle(R.string.choose_list_to_add_song)
-                builder.setIcon(R.drawable.add_list_icon)
+                builder.setIcon(R.drawable.add_to_list_icon)
                 builder.setSingleChoiceItems(listNames, -1)  { dialogInterface, i ->
                     selected_ListName = listNames[i]
                     var myListSongs = HashMap<Int, Song>()

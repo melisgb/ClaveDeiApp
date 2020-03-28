@@ -17,7 +17,6 @@ import com.example.myandroidapp.db.DatabaseHelper
 import kotlinx.android.synthetic.main.activity_search_songs.*
 import kotlinx.android.synthetic.main.list_elem_search_songs.*
 import java.lang.Math.abs
-import kotlin.math.absoluteValue
 import kotlin.random.Random
 
 
@@ -66,7 +65,7 @@ class SearchSongsActivity : AppCompatActivity() {
                     val copy_Selected_Set = HashSet<Int>(selected_Set)
                     val builder = AlertDialog.Builder(this@SearchSongsActivity)
                     builder.setTitle(R.string.choose_list_to_add_song)
-                    builder.setIcon(R.drawable.songlist)
+                    builder.setIcon(R.drawable.add_to_list_icon)
                     builder.setSingleChoiceItems(listNames, -1)  { dialogInterface, i ->
                         selected_ListName = listNames[i]
 

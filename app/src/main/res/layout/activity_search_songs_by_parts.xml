@@ -21,121 +21,152 @@
 
 
     <androidx.gridlayout.widget.GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="335dp"
+        android:layout_height="499dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="24dp"
         app:columnCount="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchSongsbyPartsTitleTxtView">
+        app:layout_constraintTop_toBottomOf="@+id/searchSongsbyPartsTitleTxtView"
+        app:rowCount="5">
 
         <Button
             android:id="@+id/p1_Entrada_btn"
-            android:layout_width="187dp"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="9dp"
             android:background="@drawable/round_shape_btn"
             android:text="@string/button_EntrancePart"
             android:textColor="@color/white"
-            app:layout_gravity="fill" />
+            android:textSize="18sp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_rowWeight="1" />
 
         <Button
             android:id="@+id/p2_Piedad_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginBottom="9dp"
             android:background="@drawable/round_shape_btn"
             android:text="@string/button_MercyPart"
             android:textColor="@color/white"
-            app:layout_gravity="fill" />
+            android:textSize="18sp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_rowWeight="1" />
 
         <Button
             android:id="@+id/p3_Gloria_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="9dp"
             android:background="@drawable/round_shape_btn"
             android:text="@string/button_GloryPart"
             android:textColor="@color/white"
-            app:layout_gravity="fill" />
+            android:textSize="18sp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_rowWeight="1" />
 
         <Button
             android:id="@+id/p4_Salmos_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginBottom="9dp"
             android:background="@drawable/round_shape_btn"
             android:text="@string/button_SalmPart"
             android:textColor="@color/white"
-            app:layout_gravity="fill" />
+            android:textSize="18sp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_rowWeight="1" />
 
         <Button
             android:id="@+id/p5_Proclamacion_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/round_shape_btn"
             android:text="@string/button_AlelluiaPart"
             android:textColor="@color/white"
-            app:layout_gravity="fill" />
+            android:textSize="18sp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_rowWeight="1" />
 
         <Button
             android:id="@+id/p6_Ofertorio_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginBottom="9dp"
             android:background="@drawable/round_shape_btn"
             android:text="@string/button_OffertoryPart"
             android:textColor="@color/white"
-            app:layout_gravity="fill" />
+            android:textSize="18sp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_rowWeight="1" />
 
         <Button
             android:id="@+id/p7_Paz_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="9dp"
             android:background="@drawable/round_shape_btn"
             android:text="@string/button_PeacePart"
             android:textColor="@color/white"
-            app:layout_gravity="fill" />
+            android:textSize="18sp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_rowWeight="1" />
 
         <Button
             android:id="@+id/p8_Cordero_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginBottom="9dp"
             android:background="@drawable/round_shape_btn"
             android:text="@string/button_LambGodPart"
             android:textColor="@color/white"
-            app:layout_gravity="fill" />
+            android:textSize="18sp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_rowWeight="1" />
 
         <Button
             android:id="@+id/p9_Comunion_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="9dp"
             android:background="@drawable/round_shape_btn"
             android:text="@string/button_CommunionPart"
             android:textColor="@color/white"
-            app:layout_gravity="fill" />
+            android:textSize="18sp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_rowWeight="1" />
 
         <Button
             android:id="@+id/p10_Salida_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginBottom="9dp"
             android:background="@drawable/round_shape_btn"
             android:text="@string/button_ExitPart"
             android:textColor="@color/white"
-            app:layout_gravity="fill" />
+            android:textSize="18sp"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_rowWeight="1" />
 
     </androidx.gridlayout.widget.GridLayout>
 
